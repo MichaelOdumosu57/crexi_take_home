@@ -13,13 +13,13 @@
                 <ng-container *ngFor="let metadata of user.profileDetailDisplay">
                     <mat-list-item [ngSwitch]="metadata.type">
                         <ng-container *ngSwitchCase="'single'">
-                            <span>{{ metadata.detailKey }} </span><span>{{ metadata.value[0] }}</span>
+                            <span>{{ metadata.detailKey }} &nbsp;</span><span>{{ metadata.value[0] }}</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'date'">
-                            <span>{{ metadata.detailKey }} </span><span>{{ metadata.value[0] | date }}</span>
+                            <span>{{ metadata.detailKey }} &nbsp;</span><span>{{ metadata.value[0] | date }}</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'double'">
-                            <span>{{ metadata.detailKey }} </span
+                            <span>{{ metadata.detailKey }} &nbsp; </span
                             ><span>{{ metadata.value[0] }}, {{ metadata.value[1] }}</span>
                         </ng-container>
                     </mat-list-item>
