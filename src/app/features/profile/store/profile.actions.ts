@@ -1,8 +1,6 @@
 import { UserProfile } from '@interfaces';
 import { createAction ,props} from '@ngrx/store';
 
-export const initProfile = createAction('[Profile] Init');
-
 
 // getRandomProfile Endpoint
 export const loadingGetRandomProfile = createAction('[Profile] Loading Get Random Profile')

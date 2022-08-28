@@ -1,0 +1,5 @@
+@mixin default_flex_with_centered_items{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

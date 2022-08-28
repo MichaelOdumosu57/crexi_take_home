@@ -6,6 +6,13 @@ import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { PageComponent } from './page';
 import { PageNotFoundComponent } from './page-not-found';
+import { OverlayLoadingComponent } from './overlay-loading/overlay-loading.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+// ngrx store
+import { StoreModule } from '@ngrx/store';
+import { getLayoutReducer } from './store/layout.reducer';
+
 
 @NgModule({
     declarations: [
@@ -13,18 +20,23 @@ import { PageNotFoundComponent } from './page-not-found';
         FooterComponent,
         HeaderComponent,
         PageComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        OverlayLoadingComponent
     ],
     exports: [
         AppLogoComponent,
         FooterComponent,
         HeaderComponent,
         PageComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        OverlayLoadingComponent
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        MatProgressSpinnerModule,
+        StoreModule.forFeature('layout', getLayoutReducer),
+        
     ]
 })
 export class LayoutModule {}

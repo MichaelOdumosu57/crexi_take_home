@@ -23,3 +23,20 @@
 * I use the date pipe becuase you want you business logic and app logic, souce data and display data seperate, with the use of pipes you dont have to store your application data seperate, you just use the pople outpimizing storage
 * I optimize the html so everything is not so hardcoded and I really want to implement ngx translate
   * In    FILE __src\app\features\profile\interfaces\user-profile.ts__     // tricky look at the naming convertion because I know im piping dob 
+
+# Generate Overlay loading
+* removed angular.json{}cli.defaultCollection because it was interering with schematic generation
+* wanted to see how the org does styles
+* noticed there is no variables for spacing and fontSize and I notied px were getting used, 
+* loved the fact that were know flexbox and not just bootstrap
+* from investigation it seems that page model is from core
+* I saw that z-index in the header was set to 1035, do we need a course in z-index
+* hard question whether to use store or service to toggle overlay loading, use store to keep consistency
+* what I am worried about is the generic type for store in utility.service what if it may need to do more than access layout state
+
+# Left off
+* error handling
+
+# Questions
+* I did development with a very different styling syntax how can I learn synatax standards
+* I see your convetions for naming .html and .scss how can I get the @angular-eslint/schematics to work

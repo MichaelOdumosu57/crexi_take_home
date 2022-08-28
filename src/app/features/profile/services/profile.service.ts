@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { GetUserAPISuccessModel, UserProfile } from "@interfaces";
-import { map,pluck,tap } from "rxjs/operators";
+import { map,pluck,tap,delay } from "rxjs/operators";
 import { env } from "src/environments/environment";
 
 @Injectable({providedIn:'root'})
@@ -18,6 +18,7 @@ export class ProfileService{
       env.endpoints.getRandomUser
     )
     .pipe(
+      delay(3000),
       map(getUserSuccess)
     )
   }

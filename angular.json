@@ -105,7 +105,6 @@
   },
   "defaultProject": "angular-task",
   "cli": {
-    "analytics": false,
-    "defaultCollection": "@angular-eslint/schematics"
+    "analytics": false
   }
 }

@@ -1,0 +1,18 @@
+@import 'utils';
+
+:host{
+
+  // background-color: $background-light-gray;
+  z-index: 1;
+  position: fixed;
+  inset:0;
+  width: 100%;
+  height: 100%;
+  background-color: $background-indian-red;
+  @include default_flex_with_centered_items;
+}
+
+.loadingSpinner{
+  z-index: 1;
+  
+}

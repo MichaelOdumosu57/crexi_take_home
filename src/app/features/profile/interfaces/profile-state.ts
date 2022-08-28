@@ -1,5 +1,6 @@
+import { AppState } from '@store/reducers';
 import { UserProfile } from './user-profile';
 
-export interface ProfileState {
+export class ProfileState  {
     user?: UserProfile;
 }
