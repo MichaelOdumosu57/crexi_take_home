@@ -5,20 +5,43 @@
   margin: auto;
   overflow: auto;
   padding: $gapLarge 0 ;
+
+  transition: all $transitionTime;
+  * {
+    transition: all $transitionTime;
+  }
+
 }
 
 .profile{
   margin:$gapLarge 0 0 0;
+  @include default_flex_with_centered_items;
+  &:hover{
+    mat-card{
+      width: 50%;
+    }
+
+    mat-card-content{
+      flex-direction: column;
+
+      img{
+        margin-top:-3rem;
+        border-radius: 100%;
+      }
+    }
+  }
 }
 
 .mat-card-content{
   display: flex;
   justify-content: space-between;
-  
+  align-items: center;
   flex: 1 0 100%;
 }
 
 mat-card{
-  justify-content: center;
-  display: flex;
+
+  width: 100%;
+
+
 }
