@@ -2,5 +2,6 @@ import { AppState } from '@store/reducers';
 import { UserProfile } from './user-profile';
 
 export class ProfileState  {
-    user?: UserProfile;
+    currentUser?: UserProfile;
+    users:UserProfile[] = []
 }

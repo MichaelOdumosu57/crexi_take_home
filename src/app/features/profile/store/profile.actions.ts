@@ -14,4 +14,13 @@ export const getRandomProfileFail = createAction(
 )
 
 
-
+// listRandomProfile Endpoint
+export const loadingListRandomProfile = createAction('[Profile] Loading List Random Profile')
+export const ListRandomProfileSuccess = createAction(
+  '[Profile] List Profile Success',
+  props<{ result: UserProfile[] }>()
+)
+export const ListRandomProfileFail = createAction(
+  '[Profile] List Profile Fail',
+  props<{ error: string }>()
+)

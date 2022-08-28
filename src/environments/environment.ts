@@ -6,7 +6,10 @@ export class DevEnv {
 
   production = false
   endpoints = {
-    getRandomUser:"https://randomuser.e/api/"
+    getRandomUser:"https://randomuser.me/api/"
+  }
+  profileList={
+    amntOfUsers:10
   }
 }
 export const env = new DevEnv()

@@ -20,10 +20,12 @@ import { ProfileEffects } from './store/profile.effects';
 
 // i18n
 import { TranslateModule } from '@ngx-translate/core';
+import { ProfileListComponent } from './profile-list/profile-list.component';
 
 @NgModule({
     declarations: [
-        ProfileDetailComponent
+        ProfileDetailComponent,
+        ProfileListComponent
     ],
     exports: [
         ProfileDetailComponent

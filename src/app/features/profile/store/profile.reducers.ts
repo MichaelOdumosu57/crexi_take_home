@@ -8,7 +8,7 @@ const initialState: ProfileState = new ProfileState();
 
 const reducer = createReducer(
     initialState,
-    on(ProfileActions.getRandomProfileSuccess,(state,action)=> ({...state,user:action.result}))
+    on(ProfileActions.getRandomProfileSuccess,(state,action)=> ({...state,currentUser:action.result}))
 );
 
 export function getProfileReducer (state: ProfileState | undefined, action: Action) {
