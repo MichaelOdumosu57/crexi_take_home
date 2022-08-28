@@ -1,9 +1,22 @@
+// angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { AppComponent } from './app.component';
+
+
 import { CoreModule } from '@core/core.module';
 import { FeaturesModule } from '@features/features.module';
-import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
+// i18n
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http,'content/i18n/');
+  }
+
 
 @NgModule({
     bootstrap: [
@@ -16,7 +29,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         BrowserModule,
         CoreModule,
         FeaturesModule,
-        BrowserAnimationsModule
+        TranslateModule.forRoot({
+            defaultLanguage: 'en',
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient]
+            }
+          })        
+        
         
     ]
 })

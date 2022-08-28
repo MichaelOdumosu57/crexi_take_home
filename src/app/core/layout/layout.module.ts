@@ -12,6 +12,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 // ngrx store
 import { StoreModule } from '@ngrx/store';
 import { getLayoutReducer } from './store/layout.reducer';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { getLayoutReducer } from './store/layout.reducer';
         CommonModule,
         RouterModule,
         MatProgressSpinnerModule,
+        TranslateModule,
         StoreModule.forFeature('layout', getLayoutReducer),
         
     ]

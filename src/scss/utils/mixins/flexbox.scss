@@ -3,3 +3,10 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin default_column_flex_with_centered_items{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

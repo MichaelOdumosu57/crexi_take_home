@@ -1,0 +1,10 @@
+{
+  "overlayLoading":{
+    "initalLoading":"Loading ..."
+  },
+  "profileDetail":{
+    "initialLoading":"Retrieving User Information",
+    "patienceLoading":"The system is retrieving user informatiom please be patient",
+    "errorLoading":"The system was unable to retrieve the user information at this time. Please try again later"
+  }
+}

@@ -12,7 +12,11 @@
   @include default_flex_with_centered_items;
 }
 
+.loadingSpinnerContainer{
+  @include default_column_flex_with_centered_items;
+}
 .loadingSpinner{
   z-index: 1;
+  margin: 0 0 $gapLarge 0;
   
 }

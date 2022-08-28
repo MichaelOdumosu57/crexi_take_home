@@ -19,7 +19,7 @@ export class ProfileService{
     )
     .pipe(
       delay(3000),
-      map(getUserSuccess)
+      raw ? tap() : map(getUserSuccess)
     )
   }
 }

@@ -8,15 +8,20 @@
 * I have heard about string, type is there email type phone type
 
 # Steps
+
+## Init steps
 * I make an env class out of the environments so I can leverage patterns such as DRY and polymorphism
 * I provide for the src\app\features\profile\store\index.ts barrel file so I can more easily organize my exports from store
 * I immediately start setting up naming conventions for my entity to establish tightly-coupled associations
-
-* I early stages make a function for information hiding so I can re use the logic to make simpler Effects
+* I early stages make a function for information hiding so I can re use the logic to make simpler Effects called __UtilService.generateEntityEffect__ 
   * for __UtilService.generateEntityEffect__ I may want to figure out how I get my translation fn involved, transform the data before doing any work
   * trade off between knowing the type in the utility service, but I should not have to ever visit the utility service ever again
 
+
+## Setting up the service
 * Now I have setup my action and effect, I need translate logic to go on my service to transform the data to the required format
+* FILE __src\app\features\profile\services\profile.service.ts__ 
+  I setup getUserSuccess translation fn to update my apiModole to my uiModel
 
 * FILE __src\app\features\profile\profile-detail\profile-detail.component.ts__
 * I replace init profile action with loading get profile 
@@ -24,7 +29,7 @@
 * I optimize the html so everything is not so hardcoded and I really want to implement ngx translate
   * In    FILE __src\app\features\profile\interfaces\user-profile.ts__     // tricky look at the naming convertion because I know im piping dob 
 
-# Generate Overlay loading
+## Generate Overlay loading
 * removed angular.json{}cli.defaultCollection because it was interering with schematic generation
 * wanted to see how the org does styles
 * noticed there is no variables for spacing and fontSize and I notied px were getting used, 
@@ -33,6 +38,7 @@
 * I saw that z-index in the header was set to 1035, do we need a course in z-index
 * hard question whether to use store or service to toggle overlay loading, use store to keep consistency
 * what I am worried about is the generic type for store in utility.service what if it may need to do more than access layout state
+* I setup delay on the API call so we can see the loading in action
 
 # Left off
 * error handling
@@ -40,3 +46,4 @@
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
 * I see your convetions for naming .html and .scss how can I get the @angular-eslint/schematics to work
+* How do I update the loading text incase something is taking too long
