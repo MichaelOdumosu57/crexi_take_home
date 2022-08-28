@@ -1,5 +1,19 @@
-import { createAction } from '@ngrx/store';
+import { UserProfile } from '@interfaces';
+import { createAction ,props} from '@ngrx/store';
 
-const initProfile = createAction('[Profile] Init');
+export const initProfile = createAction('[Profile] Init');
 
-export const profileActions = { initProfile };
+
+// getRandomProfile Endpoint
+export const loadingGetRandomProfile = createAction('[Profile] Loading Get Random Profile')
+export const getRandomProfileSuccess = createAction(
+  '[Profile] Get Profile Success',
+  props<{ result: UserProfile }>()
+)
+export const getRandomProfileFail = createAction(
+  '[Profile] Get Profile Fail',
+  props<{ error: string }>()
+)
+
+
+

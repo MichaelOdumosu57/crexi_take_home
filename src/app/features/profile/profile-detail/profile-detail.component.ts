@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { profileActions } from '@store/actions';
+import {  ProfileActions } from '@profile//store';
 import { AppState } from '@store/reducers';
 import { getUserProfile } from '@store/selectors';
 
@@ -17,8 +17,7 @@ export class ProfileDetailComponent implements OnInit {
 
     ngOnInit () {
 
-        this.store.dispatch(profileActions.initProfile());
-
+        this.store.dispatch(ProfileActions.loadingGetRandomProfile());
     }
 
 }

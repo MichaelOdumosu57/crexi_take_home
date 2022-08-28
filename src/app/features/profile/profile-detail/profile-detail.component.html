@@ -10,25 +10,21 @@
         </mat-card-title-group>
         <mat-card-content>
             <mat-list>
-                <mat-list-item>
-                    <span>Phone: </span><span>{{ user.phoneNumber }}</span>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>
-                    <span>Cell: </span><span>{{ user.cellNumber }}</span>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>
-                    <span>City: </span><span>{{ user.city }}, {{ user.state }}</span>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>
-                    <span>Email: </span><span>{{ user.email }}</span>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>
-                    <span>Date of Birth: </span><span>{{ user.dateOfBirth }}</span>
-                </mat-list-item>
+                <ng-container *ngFor="let metadata of user.profileDetailDisplay">
+                    <mat-list-item [ngSwitch]="metadata.type">
+                        <ng-container *ngSwitchCase="'single'">
+                            <span>{{ metadata.detailKey }} </span><span>{{ metadata.value[0] }}</span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'date'">
+                            <span>{{ metadata.detailKey }} </span><span>{{ metadata.value[0] | date }}</span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'double'">
+                            <span>{{ metadata.detailKey }} </span
+                            ><span>{{ metadata.value[0] }}, {{ metadata.value[1] }}</span>
+                        </ng-container>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </ng-container>
             </mat-list>
         </mat-card-content>
     </mat-card>
