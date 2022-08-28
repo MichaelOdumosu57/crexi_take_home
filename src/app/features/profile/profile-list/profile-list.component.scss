@@ -16,20 +16,12 @@
 .profile{
   margin:$gapLarge 0 0 0;
   @include default_flex_with_centered_items;
-  &:hover{
-    mat-card{
-      width: 50%;
-    }
-
-    mat-card-content{
-      flex-direction: column;
-
-      img{
-        margin-top:-3rem;
-        border-radius: 100%;
-      }
+  @media #{$tablet} {
+    &:hover{
+      @include alt_card
     }
   }
+
 }
 
 .mat-card-content{
@@ -37,6 +29,12 @@
   justify-content: space-between;
   align-items: center;
   flex: 1 0 100%;
+  @media #{$tablet} {
+    mat-card-subtitle{
+      display: none;
+    }
+  }
+
 }
 
 mat-card{

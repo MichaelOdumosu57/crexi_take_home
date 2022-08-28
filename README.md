@@ -16,8 +16,6 @@ The UI is up to you, although it is recommended to use [Angular Material](https:
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 
-## Notes
-* I want to create an action that handles loading,success and error in one
 
 ## Available routes:
 home page (default route: `/`)

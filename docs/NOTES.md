@@ -58,7 +58,8 @@
 * I add listUsers and listUsers translation fn
 * I forced the reuse of the getUserSuccess fn by mutating the interface is this ok
 ## Setting up the store
-* I mirror store against the getProfile loginc
+* I mirror store against the getProfile logic
+* I provide for logic in profile-list to only get list if the result if ProfileState.users is empty
 
 
 # Left off
@@ -75,5 +76,6 @@
 # TODO
 
 ## Optimizations
+* Avoid get all in profile list
 * bring in only one icon to be used by material icon libary, lessing api call
 * generic size your entity research ngrx entity

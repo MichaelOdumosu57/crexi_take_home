@@ -4,10 +4,11 @@
     </div>
     <div class="container">
         <div class="profile" *ngFor="let user of users$ | async">
-            <mat-card>
+            <mat-card (click)="navigateToUserProfile()">
                 <mat-card-content>
                     <img mat-card-md-image [src]="user.picture" [alt]="user.firstName + ' ' + user.lastName" />
                     <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
+                    <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
                 </mat-card-content>
             </mat-card>
         </div>
