@@ -1,6 +1,6 @@
 <crx-page>
     <div class="header">
-        <crx-header pageTitle="Profile Details"></crx-header>
+        <crx-header pageTitle="profileDetail.pageTitle"></crx-header>
     </div>
     <mat-card *ngIf="user$ | async as user" class="card">
         <mat-card-title-group>
@@ -12,16 +12,11 @@
             <mat-list>
                 <ng-container *ngFor="let metadata of user.profileDetailDisplay">
                     <mat-list-item [ngSwitch]="metadata.type">
-                        <ng-container *ngSwitchCase="'single'">
-                            <span>{{ metadata.detailKey }} &nbsp;</span><span>{{ metadata.value[0] }}</span>
-                        </ng-container>
-                        <ng-container *ngSwitchCase="'date'">
-                            <span>{{ metadata.detailKey }} &nbsp;</span><span>{{ metadata.value[0] | date }}</span>
-                        </ng-container>
-                        <ng-container *ngSwitchCase="'double'">
-                            <span>{{ metadata.detailKey }} &nbsp; </span
-                            ><span>{{ metadata.value[0] }}, {{ metadata.value[1] }}</span>
-                        </ng-container>
+                        <span>{{ metadata.detailKey | translate }} &nbsp; </span>
+
+                        <span *ngSwitchCase="'single'">{{ metadata.value[0] }}</span>
+                        <span *ngSwitchCase="'date'">{{ metadata.value[0] | date }}</span>
+                        <span *ngSwitchCase="'double'">{{ metadata.value[0] }}, {{ metadata.value[1] }}</span>
                     </mat-list-item>
                     <mat-divider></mat-divider>
                 </ng-container>

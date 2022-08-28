@@ -6,7 +6,7 @@ export class DevEnv {
 
   production = false
   endpoints = {
-    getRandomUser:"https://randomuser.me/api/"
+    getRandomUser:"https://randomuser.e/api/"
   }
 }
 export const env = new DevEnv()

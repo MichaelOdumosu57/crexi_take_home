@@ -39,7 +39,13 @@
 * hard question whether to use store or service to toggle overlay loading, use store to keep consistency
 * what I am worried about is the generic type for store in utility.service what if it may need to do more than access layout state
 * I setup delay on the API call so we can see the loading in action
+* Here I decided to start to implemnent i18n because this something I wanted taken care of early in the project
+* FILE __src\app\features\profile\profile-detail\profile-detail.component.html__
+  I made the detailKey single since its the same information and provided for the i18n there
 
+## Setting up Error handling
+* the $colorError does not look like an error banner
+* when I am setting up store for snack bar things are getting repititive lets see what I can do to mititaget
 # Left off
 * error handling
 
@@ -47,3 +53,4 @@
 * I did development with a very different styling syntax how can I learn synatax standards
 * I see your convetions for naming .html and .scss how can I get the @angular-eslint/schematics to work
 * How do I update the loading text incase something is taking too long
+* structural directive *ngIf *ngSwitchcase, the values may never change how can I get that not to render on the html

@@ -30,10 +30,16 @@ Only members of the project can read the README.md from the ignore folder
 
 
 # Resources
-* [Mat Progres Spinner](https://material.angular.io/components/progress-spinner/overview)
-  * https://stackblitz.com/edit/angular-ezgdww?file=src%2Fapp%2Fapp.module.ts,src%2Fapp%2Fprogress-spinner-overview-example.ts,src%2Fmaterial.module.ts
+
 * [Random User API](https://randomuser.me/documentation#howto)
 * [How to set value in template-driven forms in Angular](https://www.tektutorialshub.com/angular/how-to-set-value-in-template-driven-forms-in-angular/)
+
+
+## Material
+* [Mat Snackbar](https://material.angular.io/components/snack-bar)
+* [Mat Progres Spinner](https://material.angular.io/components/progress-spinner/overview)
+  * https://stackblitz.com/edit/angular-ezgdww?file=src%2Fapp%2Fapp.module.ts,src%2Fapp%2Fprogress-spinner-overview-example.ts,src%2Fmaterial.module.ts
+
 
 ## Snippets
 * general snippets found in planning in the trello workspace

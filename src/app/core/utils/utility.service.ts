@@ -17,6 +17,8 @@ export class UtilService{
 
   generateEntityEffect(
     loadingAction:ActionCreator<string, () => TypedAction<string>>,
+    loadingActionText:string,
+    failText:string,
     asyncObsFn:() => Observable<any>,
     successAction:ActionCreator<string, (props:{result:any}) => TypedAction<string>>,
     failAction:ActionCreator<string, (props:{error:any}) => TypedAction<string>>,
@@ -26,11 +28,14 @@ export class UtilService{
       .pipe(
         ofType(loadingAction),
         concatMap(() => {
-          this.store.dispatch(LayoutActions.showOverlayLoading())
+          this.store.dispatch(LayoutActions.showOverlayLoading({text:loadingActionText}))
           return asyncObsFn()
             .pipe(
               map((result) => successAction({result}) ),
-              catchError((error) => of(failAction({error}))),
+              catchError((error) => {
+                this.store.dispatch(LayoutActions.showSnackBar({text:failText}))
+                return of(failAction({error}))
+              } ),
               finalize(()=>{
                 this.store.dispatch(LayoutActions.hideOverlayLoading())
               })

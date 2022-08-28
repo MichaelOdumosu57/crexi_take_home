@@ -29,7 +29,7 @@ export class UserProfile {
     .map((nullVal,index0)=>{
         return{
             type:["single","single","double","single","date"][index0],
-            detailKey:["Phone:","Cell: ","City: ","Email: ","Date of Birth: "][index0],
+            detailKey:"profileDetail.detailKeys." + index0,
             value:[]
         }
     })

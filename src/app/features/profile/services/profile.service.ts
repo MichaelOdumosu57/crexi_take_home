@@ -18,7 +18,7 @@ export class ProfileService{
       env.endpoints.getRandomUser
     )
     .pipe(
-      delay(3000),
+      // delay(3000),
       raw ? tap() : map(getUserSuccess)
     )
   }

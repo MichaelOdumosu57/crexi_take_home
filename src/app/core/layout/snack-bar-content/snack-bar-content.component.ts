@@ -4,17 +4,17 @@ import { LayoutState } from '../interfaces';
 import { LayoutSelectors } from '../store';
 
 @Component({
-  selector: 'app-overlay-loading',
-  templateUrl: './overlay-loading.component.html',
-  styleUrls: ['./overlay-loading.component.scss']
+  selector: 'app-snack-bar-content',
+  templateUrl: './snack-bar-content.component.html',
+  styleUrls: ['./snack-bar-content.component.scss']
 })
-export class OverlayLoadingComponent implements OnInit {
+export class SnackBarContentComponent implements OnInit {
 
 
+  getSnackBarText$ = this.store.select(LayoutSelectors.getSnackBarText)
   constructor(
     private store:Store<LayoutState>
   ) { }
-  overlayLoadingText$= this.store.select(LayoutSelectors.getOverlayLoadingText)
 
   ngOnInit(): void {
   }

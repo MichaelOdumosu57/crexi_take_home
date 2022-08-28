@@ -17,6 +17,8 @@ export class ProfileEffects {
 
   getRandomUser$ = this.utilService.generateEntityEffect(
     ProfileActions.loadingGetRandomProfile,
+    "profileDetail.initialLoading",
+    "profileDetail.errorLoading",
     this.profileService.getUser,
     ProfileActions.getRandomProfileSuccess,
     ProfileActions.getRandomProfileFail
