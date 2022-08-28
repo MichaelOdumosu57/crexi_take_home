@@ -4,7 +4,7 @@
     </div>
     <div class="container">
         <div class="profile" *ngFor="let user of users$ | async">
-            <mat-card (click)="navigateToUserProfile()">
+            <mat-card (click)="navigateToUserProfile(user)">
                 <mat-card-content>
                     <img mat-card-md-image [src]="user.picture" [alt]="user.firstName + ' ' + user.lastName" />
                     <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>

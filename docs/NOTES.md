@@ -53,14 +53,19 @@
 ## Creating the profile list page and seeing it
 * I used angular cli
 * I updated __src\app\app.routes.ts__ and added profiles list
+* I provided a bit of anmiation
 
 ## Setting up the service endpoint
 * I add listUsers and listUsers translation fn
 * I forced the reuse of the getUserSuccess fn by mutating the interface is this ok
+
 ## Setting up the store
 * I mirror store against the getProfile logic
 * I provide for logic in profile-list to only get list if the result if ProfileState.users is empty
 
+## Getting the user from the route
+* I set up my selector pickUserProfile
+  * __ODD__ somehow currentUserId is coming up a string evenhtough it was type 2 a number
 
 # Left off
 * error handling
@@ -76,6 +81,7 @@
 # TODO
 
 ## Optimizations
+* Fallback img incase orignial is missing
 * Avoid get all in profile list
 * bring in only one icon to be used by material icon libary, lessing api call
 * generic size your entity research ngrx entity

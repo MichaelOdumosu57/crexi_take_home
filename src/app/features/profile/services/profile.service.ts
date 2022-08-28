@@ -58,8 +58,10 @@ let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
 let listUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
-  let uiData = apiData.results.map((apiUser) => {
-    return getUserSuccess({ info: apiData.info, results: [apiUser] })
+  let uiData = apiData.results.map((apiUser,index0) => {
+    let uiUser = getUserSuccess({ info: apiData.info, results: [apiUser] })
+    uiUser.id = index0
+    return uiUser
   })
   return uiData
 

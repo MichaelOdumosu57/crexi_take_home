@@ -24,3 +24,9 @@ export const listRandomProfileFail = createAction(
   '[Profile] List Profile Fail',
   props<{ error: string }>()
 )
+
+// pickRandomProfile
+export const updateCurrentUserId = createAction(
+  '[Profile] Update current user id',
+  props<{id:number}>()
+)

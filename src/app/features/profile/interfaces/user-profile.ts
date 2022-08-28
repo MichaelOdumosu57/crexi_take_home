@@ -23,6 +23,7 @@ export class UserProfile {
     phoneNumber: string;
     picture: string;
     state: string;
+    id:number;
 
     profileDetailDisplay=Array(5)
     .fill(null)

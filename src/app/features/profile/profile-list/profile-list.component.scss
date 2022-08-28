@@ -16,7 +16,7 @@
 .profile{
   margin:$gapLarge 0 0 0;
   @include default_flex_with_centered_items;
-  @media #{$tablet} {
+  @media #{$tablet},#{$desktop} {
     &:hover{
       @include alt_card
     }
@@ -29,7 +29,7 @@
   justify-content: space-between;
   align-items: center;
   flex: 1 0 100%;
-  @media #{$tablet} {
+  @media #{$tablet},#{$desktop} {
     mat-card-subtitle{
       display: none;
     }

@@ -12,6 +12,9 @@ export class DevEnv {
     getRandomUser:"https://randomuser.me/api/",
     listRandomUsers:"https://randomuser.me/api/"
   }
+  profileDetail={
+    getUserStrategy:"route" // "api" | "route"
+  }
   profileList={
     amntOfUsers:10
   }

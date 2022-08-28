@@ -1,5 +1,5 @@
 // angular
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 // rxjs
@@ -10,6 +10,7 @@ import { AppState } from '@store/reducers';
 import { ProfileActions } from '../store';
 import { listUserProfiles } from '../store/profile.selectors';
 import { Subject } from 'rxjs';
+import { UserProfile } from '../interfaces';
 
 @Component({
   selector: 'app-profile-list',
@@ -37,10 +38,12 @@ export class ProfileListComponent  {
       })
     )
     .subscribe()
-  }
+}
 
-  navigateToUserProfile(){
-    this.router.navigate(["profile"])
+  navigateToUserProfile(selectedUser:UserProfile){
+    let {id} =selectedUser
+
+    this.router.navigate(["profile/"+id])
   }
 
   ngOnDestroy() {
