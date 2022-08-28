@@ -1,0 +1,8 @@
+<crx-page>
+    <div class="header">
+        <crx-header pageTitle="profileList.pageTitle"></crx-header>
+    </div>
+    <div class="container">
+        <mat-card class="profile" *ngFor="let user of users$ | async"></mat-card>
+    </div>
+</crx-page>

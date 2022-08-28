@@ -26,14 +26,8 @@ export class ProfileService {
 
   listUsers = (raw: boolean = false) => {
 
-    return forkJoin(
-      Array(env.profileList.amntOfUsers)
-        .fill(null)
-        .map(() => {
-          return this.http.get(
-            env.endpoints.getRandomUser
-          )
-        })
+    return this.http.get(
+      env.endpoints.listRandomUsers
     )
       .pipe(
         delay(3000),
@@ -64,10 +58,10 @@ let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
 }
 
-let listUserSuccess = (apiData: GetUserAPISuccessModel[]) => {
+let listUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
-  let uiData = apiData.map((apiUser) => {
-    return getUserSuccess(apiUser)
+  let uiData = apiData.results.map((apiUser) => {
+    return getUserSuccess({info:apiData.info,results:[apiUser]})
   })
   return uiData
 

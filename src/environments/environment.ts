@@ -4,9 +4,13 @@
 
 export class DevEnv {
 
+  constructor(){
+    this.endpoints.listRandomUsers+="?results="+this.profileList.amntOfUsers
+  }
   production = false
   endpoints = {
-    getRandomUser:"https://randomuser.me/api/"
+    getRandomUser:"https://randomuser.me/api/",
+    listRandomUsers:"https://randomuser.me/api/"
   }
   profileList={
     amntOfUsers:10

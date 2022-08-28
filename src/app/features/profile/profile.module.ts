@@ -25,7 +25,7 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 @NgModule({
     declarations: [
         ProfileDetailComponent,
-        ProfileListComponent
+        ProfileListComponent,
     ],
     exports: [
         ProfileDetailComponent

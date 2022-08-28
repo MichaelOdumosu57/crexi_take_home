@@ -24,4 +24,12 @@ export class ProfileEffects {
     ProfileActions.getRandomProfileFail
   )
 
+  listRandomUsers$ = this.utilService.generateEntityEffect(
+    ProfileActions.loadingListRandomProfile,
+    "profileDetail.initialLoading",
+    "profileDetail.errorLoading",
+    this.profileService.listUsers,
+    ProfileActions.listRandomProfileSuccess,
+    ProfileActions.listRandomProfileFail
+  )
 }
