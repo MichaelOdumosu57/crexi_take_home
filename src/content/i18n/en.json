@@ -11,6 +11,7 @@
     "detailKeys":["Phone:","Cell: ","City: ","Email: ","Date of Birth: "]
   },
   "profileList":{
+    "selectRandomUser":"Select Random User",
     "pageTitle":"Profile List",
     "initialLoading":"Retrieving Users",
     "errorLoading":"The system was unable to retrieve the users at this time. Please try again later"

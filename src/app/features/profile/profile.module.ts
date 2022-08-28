@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
 
 // msic
 import { LayoutModule } from '@core/layout/layout.module';
@@ -21,11 +22,15 @@ import { ProfileEffects } from './store/profile.effects';
 // i18n
 import { TranslateModule } from '@ngx-translate/core';
 import { ProfileListComponent } from './profile-list/profile-list.component';
+import { ProfileMainComponent } from './profile-main/profile-main.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
     declarations: [
         ProfileDetailComponent,
         ProfileListComponent,
+        ProfileMainComponent,
     ],
     exports: [
         ProfileDetailComponent
@@ -36,8 +41,10 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
         MatCardModule,
         MatDividerModule,
         MatListModule,
+        MatButtonModule,
         HttpClientModule,
         TranslateModule,
+        RouterModule,
         StoreModule.forFeature('profile', getProfileReducer),
         EffectsModule.forFeature([ProfileEffects])
     ]

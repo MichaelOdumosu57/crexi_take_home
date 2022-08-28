@@ -66,6 +66,7 @@
 ## Getting the user from the route
 * I set up my selector pickUserProfile
   * __ODD__ somehow currentUserId is coming up a string evenhtough it was type 2 a number
+* I had to make a container component profile-main that will gather logic
 
 # Left off
 * error handling

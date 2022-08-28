@@ -1,16 +1,13 @@
 // angular
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
-// rxjs
-import {tap,takeUntil} from 'rxjs/operators'
-// ngrx
+
+// store
 import { Store } from '@ngrx/store';
-import { AppState } from '@store/reducers';
-import { ProfileActions } from '../store';
+import { ProfileState, UserProfile } from '../interfaces';
 import { listUserProfiles } from '../store/profile.selectors';
-import { Subject } from 'rxjs';
-import { UserProfile } from '../interfaces';
 
 @Component({
   selector: 'app-profile-list',
@@ -19,37 +16,20 @@ import { UserProfile } from '../interfaces';
 })
 export class ProfileListComponent  {
 
-  users$ = this.store.select(listUserProfiles);
-  ngUnsub = new Subject<void>()
-
   constructor (
-    private store: Store<AppState>,
-    private router:Router
+    private router:Router,
+    private store:Store<ProfileState>
   ) {}
+  users$:Observable<UserProfile[]> = this.store.select(listUserProfiles);
 
-  ngOnInit () {
 
-    this.users$.pipe(
-      takeUntil(this.ngUnsub),
-      tap((result)=>{
-        if(result.length === 0){
-          this.store.dispatch(ProfileActions.loadingListRandomProfile());
-        }
-      })
-    )
-    .subscribe()
-}
 
-  navigateToUserProfile(selectedUser:UserProfile){
-    let {id} =selectedUser
-
-    this.router.navigate(["profile/"+id])
+  navigateToUserProfile(selectedUser?:UserProfile){
+    let id =selectedUser?.id
+    this.router.navigate(["profile/"+(id ?? '')])
   }
 
-  ngOnDestroy() {
-    this.ngUnsub.next();
-    this.ngUnsub.complete()
-  }
+
 
 
 

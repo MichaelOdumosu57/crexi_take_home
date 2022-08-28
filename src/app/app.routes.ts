@@ -3,36 +3,51 @@ import { PageNotFoundComponent } from '@core/layout/page-not-found';
 import { HomePageComponent } from '@features/home-page';
 import { ProfileDetailComponent } from '@features/profile/profile-detail';
 import { ProfileListComponent } from '@features/profile/profile-list/profile-list.component';
+import { ProfileMainComponent } from '@features/profile/profile-main/profile-main.component';
 
 export const appRoutes: Routes = [
-    {
+  {
+    component: ProfileMainComponent,
+    path: 'profile',
+    children: [
+      {
         component: ProfileDetailComponent,
         data: { name: 'profileDetail' },
-        path: 'profile/:id'
-    },
-    {
+        path: ':id'
+      },
+      {
         component: ProfileDetailComponent,
         data: { name: 'profileDetail' },
-        path: 'profile'
-    },
-    {
+        path: ''
+      }
+    ]
+  },
+  {
+    component: ProfileMainComponent,
+    path: 'profiles',
+    children: [
+      {
         component: ProfileListComponent,
         data: { name: 'profileList' },
-        path: 'profiles'
-    },    
-    {
-        component: PageNotFoundComponent,
-        data: { name: 'pageNotFound' },
-        path: '404'
-    },
-    {
-        component: HomePageComponent,
-        data: { name: 'homePage' },
         path: ''
-    },
-    {
-        data: { name: 'pageNotFound' },
-        path: '**',
-        redirectTo: '/404'
-    }
+      },
+    ]
+  },
+
+
+  {
+    component: PageNotFoundComponent,
+    data: { name: 'pageNotFound' },
+    path: '404'
+  },
+  {
+    component: HomePageComponent,
+    data: { name: 'homePage' },
+    path: ''
+  },
+  {
+    data: { name: 'pageNotFound' },
+    path: '**',
+    redirectTo: '/404'
+  }
 ];

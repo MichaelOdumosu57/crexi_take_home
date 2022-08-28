@@ -40,7 +40,6 @@ export class ProfileDetailComponent implements OnInit {
       this.route.params
         .pipe(
           tap((result) => {
-            console.log(result)
             this.store.dispatch(ProfileActions.updateCurrentUserId({ id: result.id }))
           })
         )

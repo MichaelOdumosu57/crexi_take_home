@@ -3,6 +3,9 @@
         <crx-header pageTitle="profileList.pageTitle"></crx-header>
     </div>
     <div class="container">
+        <button (click)="navigateToUserProfile()" mat-raised-button color="primary">
+            {{ 'profileList.selectRandomUser' | translate }}
+        </button>
         <div class="profile" *ngFor="let user of users$ | async">
             <mat-card (click)="navigateToUserProfile(user)">
                 <mat-card-content>
