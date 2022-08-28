@@ -4,9 +4,9 @@
     </div>
     <mat-card *ngIf="user$ | async as user" class="card">
         <mat-card-title-group>
-            <mat-card-title>User Profile</mat-card-title>
+            <mat-card-title>{{ 'profileDetail.profileTitle' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ user.firstName }} {{ user.lastName }}</mat-card-subtitle>
-            <img class="circle" mat-card-md-image [src]="user.picture" />
+            <img class="circle" mat-card-md-image [src]="user.picture" [alt]="user.firstName + ' ' + user.lastName" />
         </mat-card-title-group>
         <mat-card-content>
             <mat-list>

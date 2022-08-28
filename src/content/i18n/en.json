@@ -4,13 +4,16 @@
   },
   "profileDetail":{
     "pageTitle":"Profile Details",
+    "profileTitle":"User Profile",
     "initialLoading":"Retrieving User Information",
     "patienceLoading":"The system is retrieving user informatiom please be patient",
     "errorLoading":"The system was unable to retrieve the user information at this time. Please try again later",
     "detailKeys":["Phone:","Cell: ","City: ","Email: ","Date of Birth: "]
   },
   "profileList":{
-    "pageTitle":"Profile List"
+    "pageTitle":"Profile List",
+    "initialLoading":"Retrieving Users",
+    "errorLoading":"The system was unable to retrieve the users at this time. Please try again later"
   },
   "snackBarContent":{
     "crossIconAriaLabel":"Dismiss Snackbar"

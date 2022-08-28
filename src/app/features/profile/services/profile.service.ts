@@ -19,7 +19,6 @@ export class ProfileService {
       env.endpoints.getRandomUser
     )
       .pipe(
-        delay(3000),
         raw ? tap() : map(getUserSuccess)
       )
   }
@@ -30,7 +29,6 @@ export class ProfileService {
       env.endpoints.listRandomUsers
     )
       .pipe(
-        delay(3000),
         raw ? tap() : map(listUserSuccess)
       )
   }
@@ -61,7 +59,7 @@ let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
 let listUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
   let uiData = apiData.results.map((apiUser) => {
-    return getUserSuccess({info:apiData.info,results:[apiUser]})
+    return getUserSuccess({ info: apiData.info, results: [apiUser] })
   })
   return uiData
 
