@@ -7,7 +7,7 @@ import { LayoutState } from '../interfaces';
 import { LayoutSelectors } from '../store';
 
 // rxjs
-import {take, tap,takeUntil} from 'rxjs/operators'
+import { tap,takeUntil} from 'rxjs/operators'
 import { Subject } from 'rxjs';
 
 // material

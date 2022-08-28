@@ -11,22 +11,24 @@ import { HeaderComponent } from './header';
 import { PageComponent } from './page';
 import { PageNotFoundComponent } from './page-not-found';
 import { OverlayLoadingComponent } from './overlay-loading/overlay-loading.component';
+import { SnackBarContentComponent } from './snack-bar-content/snack-bar-content.component';
 
 
 // materinal
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatIconModule} from '@angular/material/icon';
 
 
 // ngrx store
 import { StoreModule } from '@ngrx/store';
 import { getLayoutReducer } from './store/layout.reducer';
 import { TranslateModule } from '@ngx-translate/core';
-import { SnackBarContentComponent } from './snack-bar-content/snack-bar-content.component';
 
 let material = [
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
 ]
 
 let components = [

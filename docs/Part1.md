@@ -37,7 +37,7 @@
 * from investigation it seems that page model is from core
 * I saw that z-index in the header was set to 1035, do we need a course in z-index
 * hard question whether to use store or service to toggle overlay loading, use store to keep consistency
-* what I am worried about is the generic type for store in utility.service what if it may need to do more than access layout state
+* what I am worried about is the generidec type for store in utility.service what if it may need to do more than access layout state
 * I setup delay on the API call so we can see the loading in action
 * Here I decided to start to implemnent i18n because this something I wanted taken care of early in the project
 * FILE __src\app\features\profile\profile-detail\profile-detail.component.html__

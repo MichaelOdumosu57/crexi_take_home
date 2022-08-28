@@ -1,1 +1,4 @@
 <p>{{ getSnackBarText$ | async | translate }}</p>
+<button (click)="dismissSnackbar()">
+    <mat-icon aria-label="Dismiss snackbar">close</mat-icon>
+</button>

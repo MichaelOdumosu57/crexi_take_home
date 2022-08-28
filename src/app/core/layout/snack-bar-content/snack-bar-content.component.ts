@@ -1,22 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+// angular
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+// ngrx
 import { Store } from '@ngrx/store';
 import { LayoutState } from '../interfaces';
-import { LayoutSelectors } from '../store';
+import { LayoutActions, LayoutSelectors } from '../store';
+
 
 @Component({
   selector: 'app-snack-bar-content',
   templateUrl: './snack-bar-content.component.html',
   styleUrls: ['./snack-bar-content.component.scss']
 })
-export class SnackBarContentComponent implements OnInit {
+export class SnackBarContentComponent  {
 
 
   getSnackBarText$ = this.store.select(LayoutSelectors.getSnackBarText)
+  dismissSnackbar(){
+    this.store.dispatch(LayoutActions.hideSnackBar())
+    this.router.navigate(["/"])
+  }
   constructor(
-    private store:Store<LayoutState>
+    private store:Store<LayoutState>,
+    private router:Router
   ) { }
 
-  ngOnInit(): void {
-  }
+
 
 }
