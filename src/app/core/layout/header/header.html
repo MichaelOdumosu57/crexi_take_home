@@ -1,4 +1,11 @@
 <div class="title">
-    <crx-app-logo routerLink="/"></crx-app-logo>
-    <span>{{ pageTitle | translate }}</span>
+    <div>
+        <crx-app-logo routerLink="/"></crx-app-logo>
+        <span>{{ pageTitle | translate }}</span>
+    </div>
+    <div class="i18nButtons">
+        <button (click)="button.click()" mat-raised-button *ngFor="let button of i18nButtons">
+            {{button.label | translate}}
+        </button>
+    </div>
 </div>

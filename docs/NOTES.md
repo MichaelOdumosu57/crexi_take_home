@@ -66,10 +66,11 @@
 ## Getting the user from the route
 * I set up my selector pickUserProfile
   * __ODD__ somehow currentUserId is coming up a string evenhtough it was type 2 a number
-* I had to make a container component profile-main that will gather logic
+* I had to make a container component profile-main that will retrieve the list of users
 
-# Left off
-* error handling
+## Implement i18n
+
+## Implement SSR in profile list
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
@@ -82,7 +83,9 @@
 # TODO
 
 ## Optimizations
-* Fallback img incase orignial is missing
+
 * Avoid get all in profile list
+* turn card into library
 * bring in only one icon to be used by material icon libary, lessing api call
 * generic size your entity research ngrx entity
+* Fallback img incase orignial is missing

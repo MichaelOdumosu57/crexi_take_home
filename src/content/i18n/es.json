@@ -1,0 +1,28 @@
+{
+    "overlayLoading": {
+        "initalLoading": "Cargando ..."
+    },
+    "profileDetail": {
+        "pageTitle": "detalles del perfil",
+        "profileTitle": "Perfil del usuario",
+        "initialLoading": "Recuperar informaci\u00f3n del usuario",
+        "patienceLoading": "El sistema est\u00e1 recuperando la informaci\u00f3n del usuario, sea paciente",
+        "errorLoading": "El sistema no pudo recuperar la informaci\u00f3n del usuario en este momento.Por favor, int\u00e9ntelo de nuevo m\u00e1s tarde",
+        "detailKeys": [
+            "Tel\u00e9fono:",
+            "C\u00e9lula:",
+            "Ciudad:",
+            "Correo electr\u00f3nico:",
+            "Fecha de nacimiento:"
+        ]
+    },
+    "profileList": {
+        "selectRandomUser": "Seleccione un usuario aleatorio",
+        "pageTitle": "Lista de perfil",
+        "initialLoading": "Recuperando usuarios",
+        "errorLoading": "El sistema no pudo recuperar a los usuarios en este momento.Por favor, int\u00e9ntelo de nuevo m\u00e1s tarde"
+    },
+    "snackBarContent": {
+        "crossIconAriaLabel": "Despedir bocadillos"
+    }
+}

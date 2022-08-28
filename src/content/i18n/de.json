@@ -1,0 +1,28 @@
+{
+    "overlayLoading": {
+        "initalLoading": "Wird geladen ..."
+    },
+    "profileDetail": {
+        "pageTitle": "Profildetails",
+        "profileTitle": "Benutzerprofil",
+        "initialLoading": "Abrufen von Benutzerinformationen",
+        "patienceLoading": "Das System ruft Benutzerinformationen ab, bitte sei geduldig",
+        "errorLoading": "Das System konnte die Benutzerinformationen zu diesem Zeitpunkt nicht abrufen.Bitte versuchen Sie es sp\u00e4ter erneut",
+        "detailKeys": [
+            "Telefon:",
+            "Zelle:",
+            "Stadt:",
+            "Email:",
+            "Geburtsdatum:"
+        ]
+    },
+    "profileList": {
+        "selectRandomUser": "W\u00e4hlen Sie zuf\u00e4lligen Benutzer",
+        "pageTitle": "Profilliste",
+        "initialLoading": "Benutzer abrufen",
+        "errorLoading": "Das System konnte die Benutzer zu diesem Zeitpunkt nicht abrufen.Bitte versuchen Sie es sp\u00e4ter erneut"
+    },
+    "snackBarContent": {
+        "crossIconAriaLabel": "Snackbar entlassen"
+    }
+}

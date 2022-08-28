@@ -18,6 +18,8 @@
     justify-content: flex-end;
 }
 
+
+
 .title {
     align-items: baseline;
     display: flex;
@@ -26,6 +28,8 @@
     margin: 0;
     position: absolute;
     top: 50%;
+    justify-content: space-evenly;
+    
     transform: translateX(-50%) translateY(-50%);
 
     span {
@@ -39,6 +43,12 @@
     }
 }
 
+.i18nButtons{
+    button{
+        margin:0 $gapDefault 0 0;
+    }
+}
+
 @media #{$tabletPortraitDown} {
     :host {
         justify-content: space-between;
@@ -46,7 +56,6 @@
     }
 
     .title {
-        justify-content: center;
         width: 100%;
 
         span {

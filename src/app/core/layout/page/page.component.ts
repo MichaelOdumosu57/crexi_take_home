@@ -14,6 +14,9 @@ import { Subject } from 'rxjs';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SnackBarContentComponent } from '../snack-bar-content/snack-bar-content.component';
 
+// i18n
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'crx-page',
   styleUrls: ['./page.scss'],
@@ -40,9 +43,11 @@ export class PageComponent {
       }
     })
   )
+
+
   constructor(
     private store: Store<LayoutState>,
-    private _snackBar:MatSnackBar
+    private _snackBar:MatSnackBar,
   ) { }
 
 

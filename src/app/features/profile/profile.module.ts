@@ -24,6 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileMainComponent } from './profile-main/profile-main.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { RouterModule } from '@angular/router';
         MatCardModule,
         MatDividerModule,
         MatListModule,
-        MatButtonModule,
+        SharedModule,
         HttpClientModule,
         TranslateModule,
         RouterModule,

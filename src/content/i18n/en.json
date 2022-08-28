@@ -18,5 +18,8 @@
   },
   "snackBarContent":{
     "crossIconAriaLabel":"Dismiss Snackbar"
+  },
+  "page":{
+    "i18nButtons":["English","Spanish","German"]
   }
 }
