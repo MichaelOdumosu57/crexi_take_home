@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { ProfileActions } from '@profile//store';
 import { AppState } from '@store/reducers';
 import { getUserProfile, pickUserProfile } from '@store/selectors';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 // rxjs
 import { tap } from 'rxjs/operators';
 import { env } from 'src/environments/environment';
@@ -25,7 +25,8 @@ export class ProfileDetailComponent implements OnInit {
     
   ) { }
 
- 
+  ngUnsub= new Subject()
+
   ngOnInit() {
 
     this.updateUser$BasedOnGetUserStrategy();
@@ -55,4 +56,9 @@ export class ProfileDetailComponent implements OnInit {
       "route": this.store.select(pickUserProfile)
     }[env.profileDetail.getUserStrategy];
   }
+
+  ngOnDestroy(){
+    this.ngUnsub.next();
+    this.ngUnsub.complete()
+   }
 }
