@@ -33,6 +33,7 @@ Only members of the project can read the README.md from the ignore folder
 
 # Resources
 
+* [Geocoding, retreiving lat,lng based on address](https://developers.google.com/maps/documentation/geocoding/requests-geocoding)
 * [SCSS Color Functions](https://www.w3schools.com/sass/sass_functions_color.php)
 * [Host Context](https://blog.angular-university.io/angular-host-context/)
 * [How to get the current route angular](https://www.tektutorialshub.com/angular/how-to-get-the-current-route-or-url-in-angular/)

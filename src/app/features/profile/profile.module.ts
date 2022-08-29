@@ -2,11 +2,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 // misc
 import { LayoutModule } from '@core/layout/layout.module';
-import { ProfileDetailComponent } from './profile-detail';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 // @ngrx
 import { StoreModule } from '@ngrx/store';
@@ -16,11 +17,13 @@ import { ProfileEffects } from './store/profile.effects';
 
 // i18n
 import { TranslateModule } from '@ngx-translate/core';
+
+// profile components
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileMainComponent } from './profile-main/profile-main.component';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { ProfileDetailComponent } from './profile-detail';
 import { ProfileDetailCardModule } from 'projects/profile-detail-card/src/public-api';
+import { ThreejsBackgroundComponent } from '@core/layout/threejs-background/threejs-background.component';
 
 
 @NgModule({
@@ -28,6 +31,7 @@ import { ProfileDetailCardModule } from 'projects/profile-detail-card/src/public
         ProfileDetailComponent,
         ProfileListComponent,
         ProfileMainComponent,
+        ThreejsBackgroundComponent
     ],
     exports: [
         ProfileDetailComponent

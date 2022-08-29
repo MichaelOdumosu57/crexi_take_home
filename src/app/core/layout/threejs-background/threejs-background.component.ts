@@ -14,6 +14,11 @@ import { removeAll, Tween, update } from 'content/scripts/tween.js/tween';
 import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera } from 'three';
 import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera';
 
+// store
+import { AppState } from '@store/reducers';
+import { ProfileActions, ProfileSelectors } from '@features/profile/store';
+import { Store } from '@ngrx/store';
+
 
 
 
@@ -29,14 +34,19 @@ export class ThreejsBackgroundComponent implements OnInit {
   scene = new Scene();
   renderer!: WebGLRenderer
   planetEarth!: Mesh
+  currentUser$= this.store.select(ProfileSelectors.getUserProfile)
   constructor(
     private renderer2: Renderer2,
     private el: ElementRef,
     private utilService: UtilService,
-    private router: Router
+    private router: Router,
+    private store:Store<AppState>
   ) { }
 
 
+  getCoordsOfCurrentUsersLocation(){
+    let endpoint = "https://api.mapbox.com/geocoding/v5/mapbox.places/Las%20Vegas.json?access_token=pk.eyJ1IjoibWljaGFlbG9kdW1vc3U1NyIsImEiOiJjajB5Nzl6ODMwMmVlMzJwZXVqdmtlbGs1In0.YWZAMCT9m7su01RofBiQmQ"
+  }
 
   ngOnInit(): void {
     this.initThreeJs()
