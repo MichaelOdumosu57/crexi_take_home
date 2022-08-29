@@ -86,6 +86,7 @@
 * made the header responsive
 * I noticed what host context was for and realized I didnt need overlayLoading component
 * refactored to remove overlayLoading component
+* I noticed that one of the layout actions kept dispatching, I checked in profile main to find a memory leak and went to apply singleton pattern against initLoadOnScrollBottomSub
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
@@ -99,8 +100,10 @@
 
 ## Optimizations
 
-* Avoid get all in profile list
 * turn card into library
 * bring in only one icon to be used by material icon libary, lessing api call
+* Implement three.js
+
+
 * generic size your entity research ngrx entity
 * Fallback img incase orignial is missing

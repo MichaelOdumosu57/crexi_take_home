@@ -24,30 +24,27 @@ export class ProfileService {
   }
 
   listUsersCounter=0
-  amountOfUsersToList = 2 
+   
   listUsers = (raw: boolean = false) => {
 
-    if(this.listUsersCounter === 10){
+    if(this.listUsersCounter === env.profileList.amntOfUsersLimit){
       return of([])
     }
     
     return this.http.get(
-      env.endpoints.listRandomUsers+this.amountOfUsersToList
+      env.endpoints.listRandomUsers+env.profileList.amountOfUsersToList
     )
       .pipe(
         tap(()=>{
-          this.listUsersCounter+=this.amountOfUsersToList
+          this.listUsersCounter+=env.profileList.amountOfUsersToList
         }),
-        raw ? tap() : map(listUserSuccess)
+        raw ? tap() : map(listUserSuccess(this.listUsersCounter))
       )
   }
 }
 
 // transformation functions
 let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
-
-
-
 
   let [randomUser] = apiData.results
   let uiData = new UserProfile({
@@ -65,11 +62,11 @@ let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
 }
 
-let listUserSuccess = (apiData: GetUserAPISuccessModel) => {
+let listUserSuccess =(currentUserAmnt:number)=> (apiData: GetUserAPISuccessModel) => {
 
   let uiData = apiData.results.map((apiUser,index0) => {
     let uiUser = getUserSuccess({ info: apiData.info, results: [apiUser] })
-    uiUser.id = index0
+    uiUser.id = currentUserAmnt - (env.profileList.amountOfUsersToList -index0)
     return uiUser
   })
   return uiData

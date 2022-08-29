@@ -28,6 +28,7 @@ export class ProfileListComponent {
   ngUnsub = new Subject<void>()
 
   navigateToUserProfile(selectedUser?: UserProfile) {
+    
     let id = selectedUser?.id
     this.router.navigate(["profile/" + (id ?? '')])
   }

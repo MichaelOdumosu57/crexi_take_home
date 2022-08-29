@@ -48,7 +48,6 @@ export class ProfileMainComponent implements OnInit {
           this.initLoadOnScrollBottomSub =this.initLoadOnScrollBottom().subscribe()
         }
         else if(result.length === env.profileList.amntOfUsersLimit){
-          console.log(result.length)
           this.initLoadOnScrollBottomSub?.unsubscribe()
         }
       })
