@@ -14,7 +14,8 @@ export class DevEnv {
     getUserStrategy:"route" // "api" | "route"
   }
   profileList={
-    amntOfUsersLimit:10
+    amntOfUsersLimit:10,
+    amntOfPixelsFromBottomBeforeRetrievingData:5
   }
 }
 export const env = new DevEnv()

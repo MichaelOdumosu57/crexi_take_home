@@ -32,57 +32,5 @@ export class ProfileListComponent {
     this.router.navigate(["profile/" + (id ?? '')])
   }
 
-  ngOnInit() {
-    this.checkIfInitialProfilesWereLoaded().subscribe()
-  }
 
-  checkIfInitialProfilesWereLoaded(){
-    return this.users$
-    .pipe(
-      takeUntil(this.ngUnsub),
-      tap((result)=>{
-        if(result.length ===0){
-          this.store.dispatch(ProfileActions.loadingListRandomProfile());
-        }
-        else if(result.length < 10){
-          this.initLoadOnScrollBottomSub =this.initLoadOnScrollBottom().subscribe()
-        }
-        else if(result.length === 10){
-          this.initLoadOnScrollBottomSub?.unsubscribe()
-        }
-      })
-    )
-  
-  }
-
-  initLoadOnScrollBottomSub:Subscription
-  initLoadOnScrollBottom() {
-    return  merge(
-      fromEvent(window, 'scroll'),
-      fromEvent(window, 'resize')
-    )
-      .pipe(
-        takeUntil(this.ngUnsub),
-        tap(() => {
-          let xPixelsFromTheBottom = this.determineXPixelsFromBottom();
-          if(xPixelsFromTheBottom < 5){
-            this.store.dispatch(ProfileActions.loadingListRandomProfile());
-          }
-        })
-      )
-
-  }
-
-  determineXPixelsFromBottom() {
-    let element = document.documentElement;
-    let xPixelsFromTheBottom = Math.abs(
-      ((element.scrollHeight - element.scrollTop) - element.clientHeight)
-    );
-    return xPixelsFromTheBottom;
-  }
-
-  ngOnDestroy() {
-    this.ngUnsub.next();
-    this.ngUnsub.complete()
-  }
 }

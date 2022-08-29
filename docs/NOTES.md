@@ -77,6 +77,9 @@
 ## Implement SSP in profile list
 * I refereneced old code
 * how can you tell if the current cards have not reached the bottom of the list
+* __src\app\features\profile\profile-main\profile-main.component.ts__ initLoadONScrollBottom may cause to fire too many times
+
+## Make it Responsive
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
