@@ -1,5 +1,5 @@
 <div class="title">
-    <div>
+    <div class="logo">
         <crx-app-logo routerLink="/"></crx-app-logo>
         <span>{{ pageTitle | translate }}</span>
     </div>
@@ -8,4 +8,16 @@
             {{button.label | translate}}
         </button>
     </div>
+    <mat-form-field appearance="fill" class="mobileI18nOptions">
+        <mat-label>{{"page.selectLanguage" | translate}}</mat-label>
+        <mat-select>
+            <mat-option
+                (click)="button.click()"
+                *ngFor="let button of i18nButtons"
+                [value]="'button.label' | translate"
+            >
+                {{button.label | translate}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>

@@ -18,6 +18,7 @@
     },
     "profileList": {
         "selectRandomUser": "Seleccione un usuario aleatorio",
+        "instructions": "Despl\u00e1cese hacia abajo para ver m\u00e1s usuarios",
         "pageTitle": "Lista de perfil",
         "initialLoading": "Recuperando usuarios",
         "errorLoading": "El sistema no pudo recuperar a los usuarios en este momento.Por favor, int\u00e9ntelo de nuevo m\u00e1s tarde"

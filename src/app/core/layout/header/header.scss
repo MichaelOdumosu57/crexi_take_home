@@ -21,7 +21,7 @@
 
 
 .title {
-    align-items: baseline;
+    align-items: center;
     display: flex;
     flex-direction: row;
     left: 50%;
@@ -49,6 +49,10 @@
     }
 }
 
+.mobileI18nOptions{
+    display: none;
+}
+
 @media #{$tabletPortraitDown} {
     :host {
         justify-content: space-between;
@@ -60,13 +64,24 @@
 
         span {
             font-size: 16px;
-            margin-left: 8px;
         }
     }
 }
 
 @media #{$mobile} {
-    .title {
-        width: auto;
+    .mat-form-field-wrapper{
+        padding: 0 !important;
     }
+    .mobileI18nOptions {
+        display: block;
+
+        .mat-form-field-underline{
+            position: static;
+        }
+    }
+    .i18nButtons{
+        display: none;
+    }
+    
+
 }

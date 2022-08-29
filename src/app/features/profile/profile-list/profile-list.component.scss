@@ -13,6 +13,15 @@
 
 }
 
+.misc{
+  display: flex;
+  justify-content: space-between;
+  flex-flow:row wrap;
+  * {
+    margin:0 $gapLarge $gapLarge 0
+  }
+}
+
 .profile{
   margin:$gapLarge 0 0 0;
   @include default_flex_with_centered_items;

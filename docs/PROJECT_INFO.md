@@ -31,6 +31,7 @@ Only members of the project can read the README.md from the ignore folder
 
 # Resources
 
+* [How to get the current route angular](https://www.tektutorialshub.com/angular/how-to-get-the-current-route-or-url-in-angular/)
 * [Random User API](https://randomuser.me/documentation#howto)
 * [How to set value in template-driven forms in Angular](https://www.tektutorialshub.com/angular/how-to-set-value-in-template-driven-forms-in-angular/)
 

@@ -3,6 +3,7 @@
 
 // profile list
 @import "src/app/features/profile/profile-list/profile-list.component.phone.scss";
+@import "src/app/core/layout/header/header.phone.scss";
 /* You can add global styles to this file, and also import other style files */
 html, body {
     height: 100%;
@@ -19,3 +20,4 @@ p{
     background-color: $colorError;
     width: 100%;
 }
+

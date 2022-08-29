@@ -21,6 +21,7 @@
     "crossIconAriaLabel":"Dismiss Snackbar"
   },
   "page":{
+    "selectLanguage":"Select Language",
     "i18nButtons":["English","Spanish","German"]
   }
 }

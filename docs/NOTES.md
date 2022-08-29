@@ -76,10 +76,14 @@
 
 ## Implement SSP in profile list
 * I refereneced old code
+* If the current route was not profile I told it not to do anything
+* Thought about resolve service but that may not help with ssp
 * how can you tell if the current cards have not reached the bottom of the list
 * __src\app\features\profile\profile-main\profile-main.component.ts__ initLoadONScrollBottom may cause to fire too many times
+* I want to try to optimize what profile main is doing
 
 ## Make it Responsive
+* made the header responsive
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
