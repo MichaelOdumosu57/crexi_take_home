@@ -4,19 +4,17 @@
 
 export class DevEnv {
 
-  constructor(){
-    this.endpoints.listRandomUsers+="?results="+this.profileList.amntOfUsers
-  }
+
   production = false
   endpoints = {
     getRandomUser:"https://randomuser.me/api/",
-    listRandomUsers:"https://randomuser.me/api/"
+    listRandomUsers:"https://randomuser.me/api/?results="
   }
   profileDetail={
     getUserStrategy:"route" // "api" | "route"
   }
   profileList={
-    amntOfUsers:10
+    amntOfUsersLimit:10
   }
 }
 export const env = new DevEnv()

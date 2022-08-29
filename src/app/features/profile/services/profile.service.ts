@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { GetUserAPISuccessModel, UserProfile } from "@interfaces";
-import { forkJoin } from "rxjs";
+import { forkJoin, of } from "rxjs";
 import { map, pluck, tap, delay } from "rxjs/operators";
 import { env } from "src/environments/environment";
 
@@ -23,12 +23,21 @@ export class ProfileService {
       )
   }
 
+  listUsersCounter=0
+  amountOfUsersToList = 2 
   listUsers = (raw: boolean = false) => {
 
+    if(this.listUsersCounter === 10){
+      return of([])
+    }
+    
     return this.http.get(
-      env.endpoints.listRandomUsers
+      env.endpoints.listRandomUsers+this.amountOfUsersToList
     )
       .pipe(
+        tap(()=>{
+          this.listUsersCounter+=this.amountOfUsersToList
+        }),
         raw ? tap() : map(listUserSuccess)
       )
   }

@@ -24,5 +24,12 @@
     },
     "snackBarContent": {
         "crossIconAriaLabel": "Snackbar entlassen"
+    },
+    "page": {
+        "i18nButtons": [
+            "Englisch",
+            "Spanisch",
+            "Deutsch"
+        ]
     }
 }

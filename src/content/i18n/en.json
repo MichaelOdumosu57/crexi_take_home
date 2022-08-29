@@ -12,6 +12,7 @@
   },
   "profileList":{
     "selectRandomUser":"Select Random User",
+    "instructions":"Scroll down to view more users",
     "pageTitle":"Profile List",
     "initialLoading":"Retrieving Users",
     "errorLoading":"The system was unable to retrieve the users at this time. Please try again later"

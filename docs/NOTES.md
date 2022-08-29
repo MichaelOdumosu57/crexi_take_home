@@ -68,9 +68,15 @@
   * __ODD__ somehow currentUserId is coming up a string evenhtough it was type 2 a number
 * I had to make a container component profile-main that will retrieve the list of users
 
-## Implement i18n
+# Extras 
 
-## Implement SSR in profile list
+## Implement i18n
+* I implemented the logic in the header component
+* I saw some use of absolute positioning and translate for hardcoded position, cleaned that up a bit
+
+## Implement SSP in profile list
+* I refereneced old code
+* how can you tell if the current cards have not reached the bottom of the list
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards

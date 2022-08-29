@@ -10,7 +10,6 @@ import { AppState } from '@store/reducers';
 import { ProfileActions } from '../store';
 import { listUserProfiles } from '../store/profile.selectors';
 import { Subject } from 'rxjs';
-import { UserProfile } from '../interfaces';
 
 
 @Component({
@@ -31,15 +30,15 @@ export class ProfileMainComponent implements OnInit {
 
   ngOnInit () {
 
-    this.users$.pipe(
-      takeUntil(this.ngUnsub),
-      tap((result)=>{
-        if(result.length === 0){
-          this.store.dispatch(ProfileActions.loadingListRandomProfile());
-        }
-      })
-    )
-    .subscribe()
+    // this.users$.pipe(
+    //   takeUntil(this.ngUnsub),
+    //   tap((result)=>{
+    //     if(result.length === 0){
+    //       this.store.dispatch(ProfileActions.loadingListRandomProfile());
+    //     }
+    //   })
+    // )
+    // .subscribe()
 }
 
 

@@ -8,7 +8,9 @@ const initialState: ProfileState = new ProfileState();
 const reducer = createReducer(
   initialState,
   on(ProfileActions.getRandomProfileSuccess, (state, action) => ({ ...state, currentUser: action.result })),
-  on(ProfileActions.listRandomProfileSuccess, (state, action) => ({ ...state, users: action.result })),
+  on(ProfileActions.listRandomProfileSuccess, (state, action) => 
+  ({ ...state, users: [...state.users,...action.result] })
+  ),
   on(ProfileActions.updateCurrentUserId, (state, action) => {
     
     return ({ ...state, currentUserId: action.id })
