@@ -23,7 +23,6 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileMainComponent } from './profile-main/profile-main.component';
 import { ProfileDetailComponent } from './profile-detail';
 import { ProfileDetailCardModule } from 'projects/profile-detail-card/src/public-api';
-import { ThreejsBackgroundComponent } from '@core/layout/threejs-background/threejs-background.component';
 
 
 @NgModule({
@@ -31,7 +30,7 @@ import { ThreejsBackgroundComponent } from '@core/layout/threejs-background/thre
         ProfileDetailComponent,
         ProfileListComponent,
         ProfileMainComponent,
-        ThreejsBackgroundComponent
+
     ],
     exports: [
         ProfileDetailComponent

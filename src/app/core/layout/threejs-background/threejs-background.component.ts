@@ -7,17 +7,18 @@ import { UtilService } from '@core/utils/utility.service';
 import { env } from 'src/environments/environment';
 // rxjs
 import { fromEvent, Subject } from 'rxjs';
-import { tap, takeUntil, filter } from 'rxjs/operators';
+import { tap, takeUntil, filter,pluck } from 'rxjs/operators';
 
 // three.js
 import { removeAll, Tween, update } from 'content/scripts/tween.js/tween';
-import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera } from 'three';
+import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera, Vector3 } from 'three';
 import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera';
 
 // store
-import { AppState } from '@store/reducers';
-import { ProfileActions, ProfileSelectors } from '@features/profile/store';
+import {  ProfileSelectors } from '@features/profile/store';
 import { Store } from '@ngrx/store';
+import { ProfileState, UserProfile } from '@interfaces';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -34,24 +35,52 @@ export class ThreejsBackgroundComponent implements OnInit {
   scene = new Scene();
   renderer!: WebGLRenderer
   planetEarth!: Mesh
-  currentUser$= this.store.select(ProfileSelectors.getUserProfile)
+  currentUser$= this.store.select(ProfileSelectors.pickUserProfile)
   constructor(
     private renderer2: Renderer2,
     private el: ElementRef,
     private utilService: UtilService,
     private router: Router,
-    private store:Store<AppState>
+    private store:Store<ProfileState>,
+    private http:HttpClient
   ) { }
 
 
-  getCoordsOfCurrentUsersLocation(){
-    let endpoint = "https://api.mapbox.com/geocoding/v5/mapbox.places/Las%20Vegas.json?access_token=pk.eyJ1IjoibWljaGFlbG9kdW1vc3U1NyIsImEiOiJjajB5Nzl6ODMwMmVlMzJwZXVqdmtlbGs1In0.YWZAMCT9m7su01RofBiQmQ"
+  initShowCoordsOfCurrentUsersLocationOnPlanet(){
+    return this.currentUser$
+    .pipe(
+      filter((user:UserProfile)=> user instanceof UserProfile),
+      takeUntil(this.ngUnsub),
+      tap((user)=>{
+        let endpoint = env.endpoints.getLocationCoords("Las Vegas")
+        this.getLocationCoords(endpoint).subscribe()
+        
+        
+      })
+    )
+
+  }
+
+  getLocationCoords=(endpoint:string)=>{
+    return this.http.get(endpoint)
+    .pipe(
+      pluck("features","0","center"),
+      tap((result:number[])=>{
+
+        let cityLocation = new Vector3().setFromSphericalCoords(env.threeJSBackground.planetEarthRadians, result[1], result[0])
+        console.log(cityLocation)
+        this.planetEarth.rotateX(cityLocation.x)
+        this.planetEarth.rotateY(cityLocation.y)
+        this.planetEarth.rotateZ(cityLocation.z)
+      })
+    )
   }
 
   ngOnInit(): void {
     this.initThreeJs()
     this.animate();
-    this.updateEarthsPositions().subscribe()
+    this.updateEarthsPosition().subscribe()
+    this.initShowCoordsOfCurrentUsersLocationOnPlanet().subscribe()
   }
 
   initThreeJs() {
@@ -63,25 +92,35 @@ export class ThreejsBackgroundComponent implements OnInit {
     let light = new DirectionalLight(0xffffff, 0.35);
     light.position.set(1, 5, 1).normalize();
     this.scene.add(light);
-
-
-
     this.applyCanvasToDisplayDiv();
 
   }
 
-  updateEarthsPositions() {
+  initPlanetEarth() {
+    new TextureLoader().load(
+      "content/img/earth.jpg",
+      (result) => {
+
+        let geometry = new SphereGeometry(env.threeJSBackground.planetEarthRadians, 64, 64);
+        let material = new MeshStandardMaterial({ map: result });
+        this.planetEarth = new Mesh(geometry, material);
+
+        this.planetEarth.position.set(0, 0, 0);
+        this.planetEarth.rotateX(-75);
+        this.scene.add(this.planetEarth);
+      }, () => { }, console.log
+    );
+  }
+
+  updateEarthsPosition() {
     return this.router.events
       .pipe(
         takeUntil(this.ngUnsub),
         filter((evt) => evt instanceof NavigationEnd),
         tap((evt: NavigationEnd) => {
-          console.log(evt.url)
-          // console.log(evt.url.match(/^\/\profiles/))
+          
           removeAll()
-
           let finalPosition = evt.url.match(/^\/\profiles/) ? env.threeJSBackground.cameraProfilesPosition : env.threeJSBackground.cameraProfilePosition
-          console.log(finalPosition)
           new Tween(this.camera.position)
             .to(
               finalPosition,
@@ -93,25 +132,6 @@ export class ThreejsBackgroundComponent implements OnInit {
         })
       )
 
-  }
-
-
-
-
-  initPlanetEarth() {
-    new TextureLoader().load(
-      "content/img/earth.jpg",
-      (result) => {
-
-        let geometry = new SphereGeometry(7, 64, 64);
-        let material = new MeshStandardMaterial({ map: result });
-        this.planetEarth = new Mesh(geometry, material);
-
-        this.planetEarth.position.set(0, 0, 0);
-        this.planetEarth.rotateX(-75);
-        this.scene.add(this.planetEarth);
-      }, () => { }, console.log
-    );
   }
 
   initBackground() {
@@ -160,8 +180,11 @@ export class ThreejsBackgroundComponent implements OnInit {
     this.setCanvasDimsBasedOnDisplayElement()
     update()
 
-    this.planetEarth?.rotateY(0.005)
-    this.planetEarth?.rotateX(0.005)
+    if(this.router.url.match(/^\/\profiles/)){
+      this.planetEarth?.rotateY(0.005)
+      this.planetEarth?.rotateX(0.005)
+    }
+
     this.renderer.render(this.scene, this.camera);
   }
   

@@ -25,6 +25,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     declarations: [
         AppComponent,
+        ThreejsBackgroundComponent
     ],
     imports: [
         BrowserModule,

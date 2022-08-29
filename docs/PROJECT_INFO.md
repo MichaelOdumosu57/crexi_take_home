@@ -32,7 +32,7 @@ Only members of the project can read the README.md from the ignore folder
 
 
 # Resources
-
+* [Encode URI Component](https://stackoverflow.com/a/332888)
 * [Geocoding, retreiving lat,lng based on address](https://developers.google.com/maps/documentation/geocoding/requests-geocoding)
 * [SCSS Color Functions](https://www.w3schools.com/sass/sass_functions_color.php)
 * [Host Context](https://blog.angular-university.io/angular-host-context/)

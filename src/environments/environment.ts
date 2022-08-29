@@ -24,11 +24,12 @@ export class DevEnv {
     amntOfPixelsFromBottomBeforeRetrievingData:5
   }
   threeJSBackground ={
+    planetEarthRadians:8,
     cameraProfilesPosition:{
-      x:0,y:0,z:9  
+      x:0,y:0,z:11
     },
     cameraProfilePosition:{
-      x:-12.5,y:0,z:11
+      x:-12.5,y:0,z:8
     }
   }
   nav ={

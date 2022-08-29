@@ -95,6 +95,9 @@
 * did it make sense to grab the material icons library I just went and grabbed the svg
 
 ## Three.js background
+* I make three.js component and place in profile main
+* I leverage mapbox api to get coordinaties of a user
+* I want to make it so if I remove it I still have a working app
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
