@@ -27,7 +27,7 @@ export class ProfileListComponent {
   users$: Observable<UserProfile[]> = this.store.select(listUserProfiles);
   ngUnsub = new Subject<void>()
 
-  navigateToUserProfile(selectedUser?: UserProfile) {
+  navigateToUserProfile= (selectedUser?: UserProfile)=> {
     
     let id = selectedUser?.id
     this.router.navigate(["profile/" + (id ?? '')])
