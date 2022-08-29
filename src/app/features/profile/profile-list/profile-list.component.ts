@@ -42,11 +42,13 @@ export class ProfileListComponent {
       takeUntil(this.ngUnsub),
       tap((result)=>{
         if(result.length ===0){
-          this.initLoadOnScrollBottomSub =this.initLoadOnScrollBottom().subscribe()
           this.store.dispatch(ProfileActions.loadingListRandomProfile());
         }
+        else if(result.length < 10){
+          this.initLoadOnScrollBottomSub =this.initLoadOnScrollBottom().subscribe()
+        }
         else if(result.length === 10){
-          this.initLoadOnScrollBottomSub.unsubscribe()
+          this.initLoadOnScrollBottomSub?.unsubscribe()
         }
       })
     )
