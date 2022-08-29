@@ -3,13 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-// material
-import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
-import {MatButtonModule} from '@angular/material/button';
 
-// msic
+// misc
 import { LayoutModule } from '@core/layout/layout.module';
 import { ProfileDetailComponent } from './profile-detail';
 
@@ -25,6 +20,7 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileMainComponent } from './profile-main/profile-main.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ProfileDetailCardModule } from 'projects/profile-detail-card/src/public-api';
 
 
 @NgModule({
@@ -39,10 +35,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     imports: [
         CommonModule,
         LayoutModule,
-        MatCardModule,
-        MatDividerModule,
-        MatListModule,
         SharedModule,
+        ProfileDetailCardModule,
         HttpClientModule,
         TranslateModule,
         RouterModule,

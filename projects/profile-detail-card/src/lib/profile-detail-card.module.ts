@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ProfileDetailCardComponent } from './profile-detail-card.component';
+
 // material
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
@@ -8,20 +9,19 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 
 let materialModules = [
-  MatButtonModule,
-  MatSelectModule,
   MatCardModule,
-  MatDividerModule,
-  MatListModule,
 ]
+
+
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProfileDetailCardComponent
+  ],
   imports: [
-    CommonModule,
     ...materialModules
   ],
-  exports:[
-    ...materialModules
+  exports: [
+    ProfileDetailCardComponent
   ]
 })
-export class SharedModule { }
+export class ProfileDetailCardModule { }

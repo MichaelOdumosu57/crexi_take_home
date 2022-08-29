@@ -10,15 +10,11 @@
             <span>{{ 'profileList.instructions' | translate }}</span>
         </div>
 
-        <div class="profile" *ngFor="let user of users$ | async; let index = index">
-            <mat-card (click)="navigateToUserProfile(user)">
-                <mat-card-content>
-                    <span class="index">{{ index + 1 }}</span>
-                    <img mat-card-md-image [src]="user.picture" [alt]="user.firstName + ' ' + user.lastName" />
-                    <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
-                    <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
-                </mat-card-content>
-            </mat-card>
-        </div>
+        <lib-profile-detail-card
+            [index]="index + 1"
+            [user]="user"
+            class="profile"
+            *ngFor="let user of users$ | async; let index = index"
+        ></lib-profile-detail-card>
     </div>
 </crx-page>

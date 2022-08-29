@@ -1,9 +1,0 @@
-@import "utils";
-@media #{$mobile} {
-  .profile{
-    @include alt_card;
-
-  }
-}
-
-
