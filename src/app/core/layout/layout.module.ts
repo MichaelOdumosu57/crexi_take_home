@@ -24,6 +24,7 @@ import { StoreModule } from '@ngrx/store';
 import { getLayoutReducer } from './store/layout.reducer';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ThreejsBackgroundComponent } from './threejs-background/threejs-background.component';
 
 let material = [
     MatSnackBarModule,
@@ -42,7 +43,8 @@ let components = [
 @NgModule({
     declarations: [
         ...components,
-        SnackBarContentComponent
+        SnackBarContentComponent,
+        ThreejsBackgroundComponent
     ],
     exports: [
         ...components

@@ -18,6 +18,11 @@ export class DevEnv {
     amountOfUsersToList:2,
     amntOfPixelsFromBottomBeforeRetrievingData:5
   }
+  threeJSBackground ={
+    cameraStart:{
+      x:0,y:0,z:0  
+    }
+  }
 }
 export const env = new DevEnv()
 

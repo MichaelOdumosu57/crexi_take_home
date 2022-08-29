@@ -15,6 +15,19 @@ export class UtilService{
     private store:Store<LayoutState>
   ) { }
 
+  numberParse(dimension: any /* string or array */): number {
+
+    if (typeof dimension === "string") {
+      return parseFloat(dimension.split("p")[0])
+    }
+    else {
+      return dimension
+        .map((x: string) => {
+          return parseFloat(x.split("p")[0])
+        })
+    }
+  }  
+
   generateEntityEffect(
     loadingAction:ActionCreator<string, () => TypedAction<string>>,
     loadingActionText:string,
