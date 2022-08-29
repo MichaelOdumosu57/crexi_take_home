@@ -24,7 +24,6 @@ export class ProfileService {
   }
 
   listUsersCounter=0
-   
   listUsers = (raw: boolean = false) => {
 
     if(this.listUsersCounter === env.profileList.amntOfUsersLimit){
@@ -66,7 +65,7 @@ let listUserSuccess =(currentUserAmnt:number)=> (apiData: GetUserAPISuccessModel
 
   let uiData = apiData.results.map((apiUser,index0) => {
     let uiUser = getUserSuccess({ info: apiData.info, results: [apiUser] })
-    uiUser.id = currentUserAmnt - (env.profileList.amountOfUsersToList -index0)
+    uiUser.id = (currentUserAmnt - (env.profileList.amountOfUsersToList -index0)) + env.profileList.amountOfUsersToList
     return uiUser
   })
   return uiData
