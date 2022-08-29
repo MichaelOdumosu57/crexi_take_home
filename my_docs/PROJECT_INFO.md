@@ -6,6 +6,7 @@
 ## Projects
 
 ## TODO
+* must have mapbox API service on the backend
 
 ## General Description
 
@@ -87,13 +88,14 @@ calculate pos on sphere based on latlon
 # Stack 
 
 ## Frontend
-* Angular v14.1.2
+* Angular v13.1.6
 ### Structure
 
 
 ## Backend
 * python v3.10.6
 * flask v 2.2.4
+* mapbox v5
 
 ### Structure
 
@@ -111,7 +113,10 @@ calculate pos on sphere based on latlon
 
 
 ## Hosting
-* Netlify,AWS Amplify,Gihub - Frontend Hosting
+* Codesandbox- Frontend Hosting
+https://codesandbox.io/p/github/MichaelOdumosu57/crexi_take_home/csb-r76j1j/draft/sparkling-night?file=%2FREADME.md
+
+
 * Heroku - backend hosting
 
 ### CMS

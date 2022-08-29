@@ -110,9 +110,15 @@
 ##  Findings
 __src\app\core\layout\app-logo\app-logo.component.ts__
 * ngrx wants to get rid of as plenty of logic as possible, everything in the lifecycle hook needs not to be there
-
+__src\app\core\layout\page\page.component.ts__
+* unfortunate we have this initToggleOverlayLoading fn ,because the host element is supposed to be the boundary and deal with things outside the element not anything inside
+* was the ng-content header necessary, the header nav should go in app componnent
+__src\app\core\layout\page-not-found\page-not-found.component.ts__
+* we should not be interacting with the dom directly according to the docs, but sometimes even through it defeats consistency, you need a break
+  * that means I have to hide my background here
 
 ## Overview
+* Noticed change detection was not used in the app
 * I see the need to use rem
 * I see incosistency in naming convetion
 * I notice that in the header we leverage ng-content it may be uncessary, why re-renreder a whoole header when we can just update the text
@@ -123,6 +129,7 @@ __src\app\core\layout\app-logo\app-logo.component.ts__
 * seeing the use of the index.ts file very handy for not making an import mess especially when it comes to store
   * should we have all our sccs in one file SOC prinicple
   * place id="root" in index html, critical so you can easily use your media query scss to overide things. we would make it global for large projects but phone is sufficient and desired if you can  have a website look good on the mobile view
+
 
 
 
