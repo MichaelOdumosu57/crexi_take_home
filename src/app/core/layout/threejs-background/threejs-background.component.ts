@@ -71,7 +71,7 @@ export class ThreejsBackgroundComponent implements OnInit {
     new TextureLoader().load(
       "content/img/earth.jpg",
       (result) => {
-        let geometry = new SphereGeometry(8,32,32);
+        let geometry = new SphereGeometry(7,64,64);
         let material = new MeshStandardMaterial({ map: result });
         this.planetEarth = new Mesh(geometry, material);
 

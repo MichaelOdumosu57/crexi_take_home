@@ -21,17 +21,10 @@ import { ProfileActions } from '../store';
 export class ProfileListComponent {
 
   constructor(
-    private router: Router,
     private store: Store<ProfileState>
   ) { }
   users$: Observable<UserProfile[]> = this.store.select(listUserProfiles);
-  ngUnsub = new Subject<void>()
-
-  navigateToUserProfile= (selectedUser?: UserProfile)=> {
-    
-    let id = selectedUser?.id
-    this.router.navigate(["profile/" + (id+1 ?? '')])
-  }
+  
 
 
 }
