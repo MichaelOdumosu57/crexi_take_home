@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { GetUserAPISuccessModel, UserProfile } from "@interfaces";
 import { forkJoin, of } from "rxjs";
-import { map, pluck, tap, delay } from "rxjs/operators";
+import { map, pluck, tap, delay, timeout } from "rxjs/operators";
 import { env } from "src/environments/environment";
 
 @Injectable({ providedIn: 'root' })
@@ -34,6 +34,7 @@ export class ProfileService {
       env.endpoints.listRandomUsers+env.profileList.amountOfUsersToList
     )
       .pipe(
+        timeout(1500),
         tap(()=>{
           this.listUsersCounter+=env.profileList.amountOfUsersToList
         }),

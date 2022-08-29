@@ -31,12 +31,14 @@ Only members of the project can read the README.md from the ignore folder
 
 # Resources
 
+* [Host Context](https://blog.angular-university.io/angular-host-context/)
 * [How to get the current route angular](https://www.tektutorialshub.com/angular/how-to-get-the-current-route-or-url-in-angular/)
 * [Random User API](https://randomuser.me/documentation#howto)
 * [How to set value in template-driven forms in Angular](https://www.tektutorialshub.com/angular/how-to-set-value-in-template-driven-forms-in-angular/)
 
 
 ## Material
+* [Mat Select](https://material.angular.io/components/select/examples)
 * [Mat Button](https://material.angular.io/components/button/api)
 * [Mat Icon](https://www.developer.com/languages/javascript/using-material-font-icons-in-your-angular-11-projects/)
 * [Mat Snackbar](https://material.angular.io/components/snack-bar)

@@ -12,3 +12,7 @@ button{
   display: flex;
   color:inherit
 }
+
+img{
+  filter: invert(100%) sepia(92%) saturate(2%) hue-rotate(199deg) brightness(119%) contrast(100%);
+}

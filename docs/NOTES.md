@@ -91,6 +91,10 @@
 ## Turn card to library
 * I found it suprisingly easy to turn a card to a library
 
+## Bring Only Icon
+* did it make sense to grab the material icons library I just went and grabbed the svg
+
+## Three.js background
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
