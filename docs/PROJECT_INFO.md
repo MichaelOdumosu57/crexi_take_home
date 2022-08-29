@@ -20,11 +20,13 @@ Only members of the project can read the README.md from the ignore folder
 ## Challenges
 
 ## Enjoyed
+* learning about host-context as a neat logic for managing overlayLoading and seeing how the crexi team managed overlayLoading
+* how they setup there scss library and theme I am going to take with me throughout my career
 
 ## Leadership
 
 ## Done Different
-
+* made product-detail-card lib from the beginning 
 
 
 

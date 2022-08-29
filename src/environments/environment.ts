@@ -8,7 +8,7 @@ export class DevEnv {
   production = false
   endpoints = {
     getRandomUser:"https://randomuser.me/api/",
-    listRandomUsers:"https://randomuser.e/api/?results="
+    listRandomUsers:"https://randomuser.me/api/?results="
   }
   profileDetail={
     getUserStrategy:"route" // "api" | "route"

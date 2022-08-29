@@ -30,7 +30,7 @@ export class ProfileListComponent {
   navigateToUserProfile= (selectedUser?: UserProfile)=> {
     
     let id = selectedUser?.id
-    this.router.navigate(["profile/" + (id ?? '')])
+    this.router.navigate(["profile/" + (id+1 ?? '')])
   }
 
 

@@ -19,7 +19,7 @@ export class SnackBarContentComponent  {
   getSnackBarText$ = this.store.select(LayoutSelectors.getSnackBarText)
   dismissSnackbar(){
     this.store.dispatch(LayoutActions.hideSnackBar())
-    this.router.navigate(["/"])
+    
   }
   constructor(
     private store:Store<LayoutState>,

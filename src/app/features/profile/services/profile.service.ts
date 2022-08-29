@@ -34,7 +34,6 @@ export class ProfileService {
       env.endpoints.listRandomUsers+env.profileList.amountOfUsersToList
     )
       .pipe(
-        timeout(1500),
         tap(()=>{
           this.listUsersCounter+=env.profileList.amountOfUsersToList
         }),

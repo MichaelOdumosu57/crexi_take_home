@@ -2,6 +2,12 @@
   "overlayLoading":{
     "initalLoading":"Loading ..."
   },
+  "homePage":{
+    "pageTitle":"Home",
+    "title":"Welcome to Crexi!",
+    "viewUserProfiles":"View User Profiles",
+    "viewRandomProfile":"View A Random Profile"
+  },
   "profileDetail":{
     "back":"Back To Profiles",
     "pageTitle":"Profile Details",

@@ -43,7 +43,7 @@ export class ProfileDetailComponent implements OnInit {
       this.route.params
         .pipe(
           tap((result) => {
-            this.store.dispatch(ProfileActions.updateCurrentUserId({ id: result.id }));
+            this.store.dispatch(ProfileActions.updateCurrentUserId({ id: +result.id-1 }));
           })
         )
         .subscribe();
