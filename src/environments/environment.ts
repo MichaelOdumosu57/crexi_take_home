@@ -20,7 +20,7 @@ export class DevEnv {
   }
   threeJSBackground ={
     cameraStart:{
-      x:0,y:0,z:0  
+      x:0,y:0,z:10  
     }
   }
 }

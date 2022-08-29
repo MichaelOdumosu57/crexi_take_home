@@ -4,6 +4,9 @@
 :host{
   margin:$gapLarge 0 0 0;
   @include default_flex_with_centered_items;
+  mat-card{
+    background-color: transparentize($color: #ffffff, $amount: .5);
+  }
   @media #{$tablet},#{$desktop} {
     &:hover{
       @include alt_card
