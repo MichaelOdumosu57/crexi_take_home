@@ -6,13 +6,14 @@ import { NavigationEnd, Router } from '@angular/router';
 import { UtilService } from '@core/utils/utility.service';
 import { env } from 'src/environments/environment';
 // rxjs
-import { fromEvent, Subject } from 'rxjs';
-import { tap, takeUntil, filter,pluck } from 'rxjs/operators';
+import { fromEvent, of, Subject } from 'rxjs';
+import { tap, takeUntil, filter,pluck, exhaustMap } from 'rxjs/operators';
 
 // three.js
 import { removeAll, Tween, update } from 'content/scripts/tween.js/tween';
-import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera, Vector3, MeshBasicMaterial } from 'three';
+import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera, Vector3, MeshBasicMaterial, Euler } from 'three';
 import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 // store
 import {  ProfileSelectors } from '@features/profile/store';
@@ -35,6 +36,7 @@ export class ThreejsBackgroundComponent implements OnInit {
   scene = new Scene();
   renderer!: WebGLRenderer
   planetEarth!: Mesh
+  controls!:OrbitControls
   currentUser$= this.store.select(ProfileSelectors.pickUserProfile)
   constructor(
     private renderer2: Renderer2,
@@ -47,17 +49,18 @@ export class ThreejsBackgroundComponent implements OnInit {
 
 
   initShowCoordsOfCurrentUsersLocationOnPlanet(){
-    return this.currentUser$
+    let sub =this.currentUser$
     .pipe(
       filter((user:UserProfile)=> user instanceof UserProfile),
       takeUntil(this.ngUnsub),
-      tap((user)=>{
+      exhaustMap(()=>{
         let endpoint = env.endpoints.getLocationCoords("Las Vegas")
-        this.getLocationCoords(endpoint).subscribe()
+        return this.panCameraToLookAtLocation(endpoint)
         
         
       })
     )
+    .subscribe()
 
   }
 
@@ -70,10 +73,12 @@ export class ThreejsBackgroundComponent implements OnInit {
     let z = (Math.sin(phi)*Math.sin(theta)) * env.threeJSBackground.planetEarthRadians
     return {x,y,z}
   }
-  getLocationCoords=(endpoint:string)=>{
-    return this.http.get(endpoint)
+
+  panCameraToLookAtLocation=(endpoint:string)=>{
+    // return this.http.get(endpoint)
+    return of([-111.148516, 36.167256])//las vegas
     .pipe(
-      pluck("features","0","center"),
+      // pluck("features","0","center"),
       tap((result:number[])=>{
 
         console.log(result)
@@ -81,11 +86,18 @@ export class ThreejsBackgroundComponent implements OnInit {
  
         
         let geometry  = new BoxGeometry(.5, .5, .5);
-        let object = new Mesh(geometry, new MeshLambertMaterial({ color: Math.random() * 0xffffff }));
+        let object = new Mesh(geometry, new MeshLambertMaterial({ color: 0x000000 }));
         let {x,y,z} = this.calcPosFromLatLonRad(lat,lng)
-        object.position.set(x,y,z)     
+        let point = {x,y,z}
+        object.position.set(x,y,z)  
+        var camDistance = this.camera.position.length();
+        console.log(camDistance)   
+        this.camera.position.copy(new Vector3(x,y,z)).normalize().multiplyScalar(camDistance);
 
-        this.scene.add(object);        
+
+
+        this.planetEarth.rotation.set(0,0,0)
+        // this.scene.add(object);        
       })
     )
   }
@@ -94,7 +106,6 @@ export class ThreejsBackgroundComponent implements OnInit {
     this.initThreeJs()
     this.animate();
     this.updateEarthsPosition().subscribe()
-    this.initShowCoordsOfCurrentUsersLocationOnPlanet().subscribe()
   }
 
   initThreeJs() {
@@ -102,12 +113,30 @@ export class ThreejsBackgroundComponent implements OnInit {
     this.initCamera();
     this.initBackground();
     this.initPlanetEarth();
-    this.scene.add(new AmbientLight(0xffffff, 1.5));
-    let light = new DirectionalLight(0xffffff, 0.35);
-    light.position.set(1, 5, 1).normalize();
-    this.scene.add(light);
+    this.addLightsToScene();
     this.applyCanvasToDisplayDiv();
+    this.initOrbitControls();
+  }
+  initCamera() {
+    this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+    this.camera.setFocalLength(5);
+    this.camera.position.set(
+      env.threeJSBackground.cameraProfilesPosition.x,
+      env.threeJSBackground.cameraProfilesPosition.y,
+      env.threeJSBackground.cameraProfilesPosition.z
+    );
+  }
 
+
+
+
+  initBackground() {
+    new TextureLoader().load(
+      "content/img/pexels-peng-liu-169647.jpg",
+      (result) => {
+        this.scene.background = result;
+      }, () => { }, console.log
+    );
   }
 
   initPlanetEarth() {
@@ -125,6 +154,25 @@ export class ThreejsBackgroundComponent implements OnInit {
     );
   }
 
+  applyCanvasToDisplayDiv = () => {
+    this.renderer = new WebGLRenderer({ antialias: true });
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.setCanvasDimsBasedOnDisplayElement();
+    this.renderer2.appendChild(this.el.nativeElement, this.renderer.domElement);
+  }
+
+  initOrbitControls() {
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.update();
+  }
+
+  addLightsToScene() {
+    this.scene.add(new AmbientLight(0xffffff, 1.5));
+    let light = new DirectionalLight(0xffffff, 0.35);
+    light.position.set(1, 5, 1).normalize();
+    this.scene.add(light);
+  }
+
   updateEarthsPosition() {
     return this.router.events
       .pipe(
@@ -139,40 +187,15 @@ export class ThreejsBackgroundComponent implements OnInit {
               finalPosition,
               1200
             )
+            .onComplete(()=>{
+              this.initShowCoordsOfCurrentUsersLocationOnPlanet()
+            })
             .start()
 
 
         })
       )
 
-  }
-
-  initBackground() {
-    new TextureLoader().load(
-      "content/img/pexels-peng-liu-169647.jpg",
-      (result) => {
-        this.scene.background = result;
-      }, () => { }, console.log
-    );
-  }
-
-  private initCamera() {
-    this.camera = new CinematicCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
-    this.camera.setFocalLength(5);
-    this.camera.position.set(
-      env.threeJSBackground.cameraProfilesPosition.x,
-      env.threeJSBackground.cameraProfilesPosition.y,
-      env.threeJSBackground.cameraProfilesPosition.z
-    );
-  }
-
-
-
-  applyCanvasToDisplayDiv = () => {
-    this.renderer = new WebGLRenderer({ antialias: true });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.setCanvasDimsBasedOnDisplayElement();
-    this.renderer2.appendChild(this.el.nativeElement, this.renderer.domElement);
   }
 
   retrieveDimsOfDisplayElement = () => {
@@ -191,6 +214,8 @@ export class ThreejsBackgroundComponent implements OnInit {
 
     requestAnimationFrame(this.animate);
     this.setCanvasDimsBasedOnDisplayElement()
+    
+    this.controls.update()
     update()
 
     if(this.router.url.match(/^\/\profiles/)){

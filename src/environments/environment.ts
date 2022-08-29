@@ -26,7 +26,7 @@ export class DevEnv {
   threeJSBackground ={
     planetEarthRadians:8,
     cameraProfilesPosition:{
-      x:0,y:0,z:11
+      x:0,y:0,z:13
     },
     cameraProfilePosition:{
       x:-12.5,y:0,z:15

@@ -32,6 +32,7 @@ Only members of the project can read the README.md from the ignore folder
 
 
 # Resources
+* [Rotate to loaction on planet three js](https://www.youtube.com/watch?v=2pUzJOfekVE)
 * [Encode URI Component](https://stackoverflow.com/a/332888)
 * [Geocoding, retreiving lat,lng based on address](https://developers.google.com/maps/documentation/geocoding/requests-geocoding)
 * [SCSS Color Functions](https://www.w3schools.com/sass/sass_functions_color.php)
@@ -52,6 +53,19 @@ Only members of the project can read the README.md from the ignore folder
 
 ## Snippets
 * general snippets found in planning in the trello workspace
+calculate pos on sphere based on latlon
+  * make sure the sphere is not rotated
+```js
+  calcPosFromLatLonRad(lat:number,lon:number,rad:number){
+    var phi= (90-lat)*(Math.PI/180)
+    var theta= (lon+180)*(Math.PI/180);
+
+    let x = -(Math.sin(phi)*Math.cos(theta)) * rad;
+    let y = (Math.cos(phi)) * rad;
+    let z = (Math.sin(phi)*Math.sin(theta)) * rad
+    return {x,y,z}
+  }
+```
 
 ## Docs
 
