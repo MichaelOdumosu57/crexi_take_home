@@ -14,7 +14,7 @@ export class DevEnv {
     getUserStrategy:"route" // "api" | "route"
   }
   readonly profileList={
-    amntOfUsersLimit:10,
+    amntOfUsersLimit:100,
     amountOfUsersToList:2,
     amntOfPixelsFromBottomBeforeRetrievingData:5
   }
