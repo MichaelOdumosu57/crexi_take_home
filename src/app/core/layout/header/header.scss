@@ -68,20 +68,3 @@
     }
 }
 
-@media #{$mobile} {
-    .mat-form-field-wrapper{
-        padding: 0 !important;
-    }
-    .mobileI18nOptions {
-        display: block;
-
-        .mat-form-field-underline{
-            position: static;
-        }
-    }
-    .i18nButtons{
-        display: none;
-    }
-    
-
-}

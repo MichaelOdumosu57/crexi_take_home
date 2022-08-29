@@ -6,7 +6,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { UtilService } from '@core/utils/utility.service';
 import { env } from 'src/environments/environment';
 // rxjs
-import { fromEvent, of, Subject } from 'rxjs';
+import { fromEvent, of, Subject, Subscription } from 'rxjs';
 import { tap, takeUntil, filter,pluck, exhaustMap } from 'rxjs/operators';
 
 // three.js
@@ -49,14 +49,16 @@ export class ThreejsBackgroundComponent implements OnInit {
 
 
   initShowCoordsOfCurrentUsersLocationOnPlanet(){
-    let sub =this.currentUser$
+    let sub:Subscription
+    
+    sub =this.currentUser$
     .pipe(
       filter((user:UserProfile)=> user instanceof UserProfile),
       takeUntil(this.ngUnsub),
       exhaustMap((user)=>{
         let endpoint = env.endpoints.getLocationCoords(user.city)
-        return this.adjustCameraToLookAtLocation(endpoint)
         
+        return this.adjustCameraToLookAtLocation(endpoint,sub)
         
       })
     )
@@ -74,9 +76,10 @@ export class ThreejsBackgroundComponent implements OnInit {
     return {x,y,z}
   }
 
-  adjustCameraToLookAtLocation=(endpoint:string)=>{
+  adjustCameraToLookAtLocation=(endpoint:string,sub?:Subscription)=>{
     return this.http.get(endpoint)
     .pipe(
+      takeUntil(this.ngUnsub),
       pluck("features","0","center"),
       tap((result:number[])=>{
 
@@ -91,6 +94,7 @@ export class ThreejsBackgroundComponent implements OnInit {
         
         this.camera.position.copy(vector)
         this.planetEarth.rotation.set(0,0,0)
+        sub?.unsubscribe()
       })
     )
   }
@@ -181,7 +185,9 @@ export class ThreejsBackgroundComponent implements OnInit {
               1200
             )
             .onComplete(()=>{
-              this.initShowCoordsOfCurrentUsersLocationOnPlanet()
+              if(!evt.url.match(/^\/\profiles/)){
+                this.initShowCoordsOfCurrentUsersLocationOnPlanet()
+              }
             })
             .start()
 

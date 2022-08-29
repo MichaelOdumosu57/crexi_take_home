@@ -5,6 +5,7 @@ import { ProfileDetailComponent } from '@features/profile/profile-detail';
 import { ProfileListComponent } from '@features/profile/profile-list/profile-list.component';
 import { ProfileMainComponent } from '@features/profile/profile-main/profile-main.component';
 
+// I want to setup lazy loading however I'll avoid for convention sake
 export const appRoutes: Routes = [
   {
     component: ProfileMainComponent,
