@@ -88,6 +88,10 @@
 * refactored to remove overlayLoading component
 * I noticed that one of the layout actions kept dispatching, I checked in profile main to find a memory leak and went to apply singleton pattern against initLoadOnScrollBottomSub
 
+## Turn card to library
+* I found it suprisingly easy to turn a card to a library
+
+
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards
 * I see your convetions for naming .html and .scss how can I get the @angular-eslint/schematics to work
@@ -100,7 +104,6 @@
 
 ## Optimizations
 
-* turn card into library
 * bring in only one icon to be used by material icon libary, lessing api call
 * Implement three.js
 
