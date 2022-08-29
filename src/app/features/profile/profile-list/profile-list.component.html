@@ -15,7 +15,6 @@
             [cardClick]="navigateToUserProfile"
             [index]="index + 1"
             [user]="user"
-            class="profile"
             *ngFor="let user of users$ | async; let index = index"
         ></lib-profile-detail-card>
     </div>
