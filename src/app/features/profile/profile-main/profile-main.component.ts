@@ -40,13 +40,15 @@ export class ProfileMainComponent implements OnInit {
     .pipe(
       takeUntil(this.ngUnsub),
       tap((result)=>{
+        
         if(result.length ===0){
           this.store.dispatch(ProfileActions.loadingListRandomProfile());
         }
-        else if(result.length < env.profileList.amntOfUsersLimit){
+        else if(result.length < env.profileList.amntOfUsersLimit && !this.initLoadOnScrollBottomSub){
           this.initLoadOnScrollBottomSub =this.initLoadOnScrollBottom().subscribe()
         }
         else if(result.length === env.profileList.amntOfUsersLimit){
+          console.log(result.length)
           this.initLoadOnScrollBottomSub?.unsubscribe()
         }
       })
@@ -65,6 +67,7 @@ export class ProfileMainComponent implements OnInit {
         tap(() => {
           let xPixelsFromTheBottom = this.determineXPixelsFromBottom();
           if(xPixelsFromTheBottom < env.profileList.amntOfPixelsFromBottomBeforeRetrievingData && this.router.url === "/profiles"){
+            
             this.store.dispatch(ProfileActions.loadingListRandomProfile());
           }
         })

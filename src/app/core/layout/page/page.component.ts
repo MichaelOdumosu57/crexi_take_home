@@ -1,5 +1,5 @@
 // angular
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, HostListener, Input } from '@angular/core';
 
 // ngrx
 import { Store } from '@ngrx/store';
@@ -7,7 +7,7 @@ import { LayoutState } from '../interfaces';
 import { LayoutSelectors } from '../store';
 
 // rxjs
-import { tap,takeUntil} from 'rxjs/operators'
+import { tap,takeUntil, map} from 'rxjs/operators'
 import { Subject } from 'rxjs';
 
 // material
@@ -15,7 +15,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SnackBarContentComponent } from '../snack-bar-content/snack-bar-content.component';
 
 // i18n
-import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'crx-page',
@@ -44,6 +44,8 @@ export class PageComponent {
     })
   )
 
+  @HostBinding('class') myClass:string = ''
+  
 
   constructor(
     private store: Store<LayoutState>,
@@ -53,6 +55,18 @@ export class PageComponent {
 
   ngOnInit(){
     this.toggleSnackBar$.subscribe()
+    this.initToggleOverlayLoading().subscribe()
+
+  }
+
+  initToggleOverlayLoading(){
+    return this.toggleOverlayLoading$
+    .pipe(
+      takeUntil(this.ngUnsub),
+      map((result)=> {
+        this.myClass= result? 'loading' : ''
+      })
+    ) 
   }
 
   ngOnDestroy() {

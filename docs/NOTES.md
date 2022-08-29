@@ -84,6 +84,8 @@
 
 ## Make it Responsive
 * made the header responsive
+* I noticed what host context was for and realized I didnt need overlayLoading component
+* refactored to remove overlayLoading component
 
 # Questions
 * I did development with a very different styling syntax how can I learn synatax standards

@@ -2,25 +2,34 @@
     <div class="header">
         <crx-header pageTitle="profileDetail.pageTitle"></crx-header>
     </div>
-    <mat-card *ngIf="user$ | async as user" class="card">
-        <mat-card-title-group>
-            <mat-card-title>{{ 'profileDetail.profileTitle' | translate }}</mat-card-title>
-            <mat-card-subtitle>{{ user.firstName }} {{ user.lastName }}</mat-card-subtitle>
-            <img class="circle" mat-card-md-image [src]="user.picture" [alt]="user.firstName + ' ' + user.lastName" />
-        </mat-card-title-group>
-        <mat-card-content>
-            <mat-list>
-                <ng-container *ngFor="let metadata of user.profileDetailDisplay">
-                    <mat-list-item [ngSwitch]="metadata.type">
-                        <span>{{ metadata.detailKey | translate }} &nbsp; </span>
+    <div class="body">
+        <mat-card *ngIf="user$ | async as user" class="card">
+            <mat-card-title-group>
+                <mat-card-title>{{ 'profileDetail.profileTitle' | translate }}</mat-card-title>
+                <mat-card-subtitle>{{ user.firstName }} {{ user.lastName }}</mat-card-subtitle>
+                <img
+                    class="circle"
+                    mat-card-md-image
+                    [src]="user.picture"
+                    [alt]="user.firstName + ' ' + user.lastName"
+                />
+            </mat-card-title-group>
+            <mat-card-content>
+                <mat-list>
+                    <ng-container *ngFor="let metadata of user.profileDetailDisplay">
+                        <mat-list-item [ngSwitch]="metadata.type">
+                            <span>{{ metadata.detailKey | translate }} &nbsp; </span>
 
-                        <span *ngSwitchCase="'single'">{{ metadata.value[0] }}</span>
-                        <span *ngSwitchCase="'date'">{{ metadata.value[0] | date }}</span>
-                        <span *ngSwitchCase="'double'">{{ metadata.value[0] }}, {{ metadata.value[1] }}</span>
-                    </mat-list-item>
-                    <mat-divider></mat-divider>
-                </ng-container>
-            </mat-list>
-        </mat-card-content>
-    </mat-card>
+                            <span class="detailValue" *ngSwitchCase="'single'">{{ metadata.value[0] }}</span>
+                            <span class="detailValue" *ngSwitchCase="'date'">{{ metadata.value[0] | date }}</span>
+                            <span class="detailValue" *ngSwitchCase="'double'"
+                                >{{ metadata.value[0] }}, {{ metadata.value[1] }}</span
+                            >
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </ng-container>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </crx-page>

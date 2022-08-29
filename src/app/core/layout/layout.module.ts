@@ -10,7 +10,6 @@ import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { PageComponent } from './page';
 import { PageNotFoundComponent } from './page-not-found';
-import { OverlayLoadingComponent } from './overlay-loading/overlay-loading.component';
 import { SnackBarContentComponent } from './snack-bar-content/snack-bar-content.component';
 
 
@@ -38,7 +37,6 @@ let components = [
     HeaderComponent,
     PageComponent,
     PageNotFoundComponent,
-    OverlayLoadingComponent
 ]
 
 @NgModule({
