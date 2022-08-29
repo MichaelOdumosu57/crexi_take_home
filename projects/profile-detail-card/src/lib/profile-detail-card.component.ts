@@ -14,7 +14,6 @@ export class ProfileDetailCardComponent implements OnInit {
   }
 
   @Input('user') user:UserProfile
-  @Input('cardClick') cardClick:(user:UserProfile)=>{} 
   @Input('index') index:number;
   
 }

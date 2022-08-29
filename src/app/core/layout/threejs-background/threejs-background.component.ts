@@ -1,15 +1,19 @@
+// angular
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { UtilService } from '@core/utils/utility.service';
-import { update } from 'content/scripts/tween.js/tween';
-import { env } from 'src/environments/environment';
+import { NavigationEnd, Router } from '@angular/router';
 
+// misc
+import { UtilService } from '@core/utils/utility.service';
+import { env } from 'src/environments/environment';
 // rxjs
 import { fromEvent, Subject } from 'rxjs';
-import { tap, takeUntil } from 'rxjs/operators';
+import { tap, takeUntil, filter } from 'rxjs/operators';
 
 // three.js
-import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial } from 'three';
+import { removeAll, Tween, update } from 'content/scripts/tween.js/tween';
+import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera } from 'three';
 import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera';
+
 
 
 
@@ -21,14 +25,15 @@ import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera';
 export class ThreejsBackgroundComponent implements OnInit {
 
   ngUnsub = new Subject();
-  camera!: CinematicCamera;
+  camera!: PerspectiveCamera;
   scene = new Scene();
   renderer!: WebGLRenderer
-  planetEarth!:Mesh
+  planetEarth!: Mesh
   constructor(
     private renderer2: Renderer2,
     private el: ElementRef,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private router: Router
   ) { }
 
 
@@ -36,6 +41,7 @@ export class ThreejsBackgroundComponent implements OnInit {
   ngOnInit(): void {
     this.initThreeJs()
     this.animate();
+    this.updateEarthsPositions().subscribe()
   }
 
   initThreeJs() {
@@ -51,32 +57,47 @@ export class ThreejsBackgroundComponent implements OnInit {
 
 
     this.applyCanvasToDisplayDiv();
-    this.resizeCanvasOnWindowResize().subscribe();
+
+  }
+
+  updateEarthsPositions() {
+    return this.router.events
+      .pipe(
+        takeUntil(this.ngUnsub),
+        filter((evt) => evt instanceof NavigationEnd),
+        tap((evt: NavigationEnd) => {
+          console.log(evt.url)
+          // console.log(evt.url.match(/^\/\profiles/))
+          removeAll()
+
+          let finalPosition = evt.url.match(/^\/\profiles/) ? env.threeJSBackground.cameraProfilesPosition : env.threeJSBackground.cameraProfilePosition
+          console.log(finalPosition)
+          new Tween(this.camera.position)
+            .to(
+              finalPosition,
+              1200
+            )
+            .start()
+
+
+        })
+      )
 
   }
 
 
 
-  onWindowResize = () => {
-
-    let { displayDivWidth, displayDivHeight } = this.retrieveDimsOfDisplayElement()
-    this.camera.aspect = displayDivWidth / displayDivHeight;
-    this.camera.updateProjectionMatrix();
-
-    this.renderer.setSize(displayDivWidth, displayDivHeight);
-
-  }
 
   initPlanetEarth() {
     new TextureLoader().load(
       "content/img/earth.jpg",
       (result) => {
-        let geometry = new SphereGeometry(7,64,64);
+
+        let geometry = new SphereGeometry(7, 64, 64);
         let material = new MeshStandardMaterial({ map: result });
         this.planetEarth = new Mesh(geometry, material);
 
-
-        this.planetEarth.position.set(0,0,0);
+        this.planetEarth.position.set(0, 0, 0);
         this.planetEarth.rotateX(-75);
         this.scene.add(this.planetEarth);
       }, () => { }, console.log
@@ -93,22 +114,16 @@ export class ThreejsBackgroundComponent implements OnInit {
   }
 
   private initCamera() {
-    this.camera = new CinematicCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+    this.camera = new CinematicCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
     this.camera.setFocalLength(5);
     this.camera.position.set(
-      env.threeJSBackground.cameraStart.x,
-      env.threeJSBackground.cameraStart.y,
-      env.threeJSBackground.cameraStart.z
+      env.threeJSBackground.cameraProfilesPosition.x,
+      env.threeJSBackground.cameraProfilesPosition.y,
+      env.threeJSBackground.cameraProfilesPosition.z
     );
   }
 
-  resizeCanvasOnWindowResize() {
-    return fromEvent(window, 'resize')
-      .pipe(
-        takeUntil(this.ngUnsub),
-        tap(this.onWindowResize)
-      )
-  }
+
 
   applyCanvasToDisplayDiv = () => {
     this.renderer = new WebGLRenderer({ antialias: true });
@@ -132,11 +147,17 @@ export class ThreejsBackgroundComponent implements OnInit {
   animate = () => {
 
     requestAnimationFrame(this.animate);
+    this.setCanvasDimsBasedOnDisplayElement()
     update()
 
     this.planetEarth?.rotateY(0.005)
     this.planetEarth?.rotateX(0.005)
     this.renderer.render(this.scene, this.camera);
+  }
+  
+  ngOnDestroy(){
+    this.ngUnsub.next();
+    this.ngUnsub.complete()
   }
 
 }

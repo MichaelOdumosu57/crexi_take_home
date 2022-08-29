@@ -12,6 +12,7 @@ import { FeaturesModule } from '@features/features.module';
 // i18n
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ThreejsBackgroundComponent } from '@core/layout/threejs-background/threejs-background.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http,'content/i18n/');
@@ -23,7 +24,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppComponent
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        ThreejsBackgroundComponent
     ],
     imports: [
         BrowserModule,

@@ -19,9 +19,16 @@ export class DevEnv {
     amntOfPixelsFromBottomBeforeRetrievingData:5
   }
   threeJSBackground ={
-    cameraStart:{
+    cameraProfilesPosition:{
       x:0,y:0,z:9  
+    },
+    cameraProfilePosition:{
+      x:-12.5,y:0,z:11  
     }
+  }
+  nav ={
+    profilesPage:"/profiles",
+    profilePage:"/profile"
   }
 }
 export const env = new DevEnv()

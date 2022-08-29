@@ -44,7 +44,6 @@ let components = [
     declarations: [
         ...components,
         SnackBarContentComponent,
-        ThreejsBackgroundComponent
     ],
     exports: [
         ...components

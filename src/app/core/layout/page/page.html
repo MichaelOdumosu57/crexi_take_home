@@ -1,10 +1,8 @@
-<!-- <app-overlay-loading *ngIf="toggleOverlayLoading$ | async"></app-overlay-loading> -->
 <div class="page">
     <div class="header-wrapper">
         <ng-content select=".header"></ng-content>
     </div>
     <div class="page-wrapper" [ngClass]="{ 'with-background': showBackground }">
         <ng-content></ng-content>
-        <app-threejs-background></app-threejs-background>
     </div>
 </div>

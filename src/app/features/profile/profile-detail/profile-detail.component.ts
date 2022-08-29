@@ -1,3 +1,4 @@
+// angular
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -6,9 +7,11 @@ import { Store } from '@ngrx/store';
 import { ProfileActions } from '@profile//store';
 import { AppState } from '@store/reducers';
 import { getUserProfile, pickUserProfile } from '@store/selectors';
-import { Observable, Subject } from 'rxjs';
 // rxjs
-import { tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { tap,takeUntil } from 'rxjs/operators';
+
+// misc
 import { env } from 'src/environments/environment';
 
 @Component({
@@ -32,6 +35,13 @@ export class ProfileDetailComponent implements OnInit {
     this.updateUser$BasedOnGetUserStrategy();
     this.determineHowToLoadUserProfile();
   }
+  
+  updateUser$BasedOnGetUserStrategy() {
+    this.user$ = {
+      "api": this.store.select(getUserProfile),
+      "route": this.store.select(pickUserProfile)
+    }[env.profileDetail.getUserStrategy];
+  }
 
 
   determineHowToLoadUserProfile() {
@@ -42,6 +52,7 @@ export class ProfileDetailComponent implements OnInit {
     else {
       this.route.params
         .pipe(
+          takeUntil(this.ngUnsub),
           tap((result) => {
             this.store.dispatch(ProfileActions.updateCurrentUserId({ id: +result.id-1 }));
           })
@@ -50,12 +61,6 @@ export class ProfileDetailComponent implements OnInit {
     }
   }
 
-  updateUser$BasedOnGetUserStrategy() {
-    this.user$ = {
-      "api": this.store.select(getUserProfile),
-      "route": this.store.select(pickUserProfile)
-    }[env.profileDetail.getUserStrategy];
-  }
 
   ngOnDestroy(){
     this.ngUnsub.next();
