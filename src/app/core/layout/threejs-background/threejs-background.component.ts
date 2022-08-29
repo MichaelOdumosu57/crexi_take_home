@@ -11,7 +11,7 @@ import { tap, takeUntil, filter,pluck } from 'rxjs/operators';
 
 // three.js
 import { removeAll, Tween, update } from 'content/scripts/tween.js/tween';
-import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera, Vector3 } from 'three';
+import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera, Vector3, MeshBasicMaterial } from 'three';
 import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera';
 
 // store
@@ -61,17 +61,31 @@ export class ThreejsBackgroundComponent implements OnInit {
 
   }
 
+  calcPosFromLatLonRad(lat:number,lon:number){
+    var phi= (90-lat)*(Math.PI/180)
+    var theta= (lon+180)*(Math.PI/180);
+
+    let x = -(Math.sin(phi)*Math.cos(theta)) * env.threeJSBackground.planetEarthRadians;
+    let y = (Math.cos(phi)) * env.threeJSBackground.planetEarthRadians;
+    let z = (Math.sin(phi)*Math.sin(theta)) * env.threeJSBackground.planetEarthRadians
+    return {x,y,z}
+  }
   getLocationCoords=(endpoint:string)=>{
     return this.http.get(endpoint)
     .pipe(
       pluck("features","0","center"),
       tap((result:number[])=>{
 
-        let cityLocation = new Vector3().setFromSphericalCoords(env.threeJSBackground.planetEarthRadians, result[1], result[0])
-        console.log(cityLocation)
-        this.planetEarth.rotateX(cityLocation.x)
-        this.planetEarth.rotateY(cityLocation.y)
-        this.planetEarth.rotateZ(cityLocation.z)
+        console.log(result)
+        let [lng,lat]= result
+ 
+        
+        let geometry  = new BoxGeometry(.5, .5, .5);
+        let object = new Mesh(geometry, new MeshLambertMaterial({ color: Math.random() * 0xffffff }));
+        let {x,y,z} = this.calcPosFromLatLonRad(lat,lng)
+        object.position.set(x,y,z)     
+
+        this.scene.add(object);        
       })
     )
   }
@@ -102,11 +116,10 @@ export class ThreejsBackgroundComponent implements OnInit {
       (result) => {
 
         let geometry = new SphereGeometry(env.threeJSBackground.planetEarthRadians, 64, 64);
-        let material = new MeshStandardMaterial({ map: result });
+        let material = new MeshLambertMaterial({ map: result });
         this.planetEarth = new Mesh(geometry, material);
 
-        this.planetEarth.position.set(0, 0, 0);
-        this.planetEarth.rotateX(-75);
+        
         this.scene.add(this.planetEarth);
       }, () => { }, console.log
     );
