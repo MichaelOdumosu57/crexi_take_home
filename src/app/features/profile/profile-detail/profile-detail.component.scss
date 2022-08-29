@@ -5,7 +5,7 @@
 }
 
 .body{
-    padding: 1rem  50% 0 2rem ;
+    padding: 1rem  20% 0 20% ;
     max-width: 120rem;
     margin: auto;
 }
@@ -14,3 +14,6 @@
     margin: 1rem 0 0 0;
 }
 
+mat-card{
+    background-color: transparentize($color: #ffffff, $amount: .5);
+  }

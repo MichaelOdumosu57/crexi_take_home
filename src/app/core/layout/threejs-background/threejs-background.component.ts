@@ -53,9 +53,9 @@ export class ThreejsBackgroundComponent implements OnInit {
     .pipe(
       filter((user:UserProfile)=> user instanceof UserProfile),
       takeUntil(this.ngUnsub),
-      exhaustMap(()=>{
-        let endpoint = env.endpoints.getLocationCoords("Las Vegas")
-        return this.panCameraToLookAtLocation(endpoint)
+      exhaustMap((user)=>{
+        let endpoint = env.endpoints.getLocationCoords(user.city)
+        return this.adjustCameraToLookAtLocation(endpoint)
         
         
       })
@@ -74,30 +74,23 @@ export class ThreejsBackgroundComponent implements OnInit {
     return {x,y,z}
   }
 
-  panCameraToLookAtLocation=(endpoint:string)=>{
-    // return this.http.get(endpoint)
-    return of([-111.148516, 36.167256])//las vegas
+  adjustCameraToLookAtLocation=(endpoint:string)=>{
+    return this.http.get(endpoint)
     .pipe(
-      // pluck("features","0","center"),
+      pluck("features","0","center"),
       tap((result:number[])=>{
 
-        console.log(result)
         let [lng,lat]= result
- 
-        
-        let geometry  = new BoxGeometry(.5, .5, .5);
-        let object = new Mesh(geometry, new MeshLambertMaterial({ color: 0x000000 }));
         let {x,y,z} = this.calcPosFromLatLonRad(lat,lng)
-        let point = {x,y,z}
-        object.position.set(x,y,z)  
-        var camDistance = this.camera.position.length();
-        console.log(camDistance)   
-        this.camera.position.copy(new Vector3(x,y,z)).normalize().multiplyScalar(camDistance);
+        var camDistance = this.camera.position.length();   
 
-
-
+        
+        let vector = new Vector3(x,y,z)
+        .normalize()
+        .multiplyScalar(camDistance)
+        
+        this.camera.position.copy(vector)
         this.planetEarth.rotation.set(0,0,0)
-        // this.scene.add(object);        
       })
     )
   }

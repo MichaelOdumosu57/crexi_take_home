@@ -18,6 +18,8 @@ Only members of the project can read the README.md from the ignore folder
 # Aspects
 
 ## Challenges
+* Getting the global to offset to the right on the profile detail pae
+
 
 ## Enjoyed
 * learning about host-context as a neat logic for managing overlayLoading and seeing how the crexi team managed overlayLoading

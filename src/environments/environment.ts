@@ -19,17 +19,17 @@ export class DevEnv {
     getUserStrategy:"route" // "api" | "route"
   }
   readonly profileList={
-    amntOfUsersLimit:100,
+    amntOfUsersLimit:10,
     amountOfUsersToList:2,
     amntOfPixelsFromBottomBeforeRetrievingData:5
   }
   threeJSBackground ={
-    planetEarthRadians:8,
+    planetEarthRadians:10,
     cameraProfilesPosition:{
       x:0,y:0,z:13
     },
     cameraProfilePosition:{
-      x:-12.5,y:0,z:15
+      x:-12.5,y:0,z:8
     }
   }
   nav ={

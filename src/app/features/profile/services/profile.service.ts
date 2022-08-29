@@ -46,6 +46,7 @@ export class ProfileService {
 let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
   let [randomUser] = apiData.results
+  
   let uiData = new UserProfile({
     cellNumber: randomUser.cell,
     city: randomUser.location.city,
@@ -55,7 +56,7 @@ let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
     lastName: randomUser.name.last,
     phoneNumber: randomUser.phone,
     picture: randomUser.picture.medium,
-    state: randomUser.location.state
+    state: randomUser.location.state,
   })
   return uiData
 
