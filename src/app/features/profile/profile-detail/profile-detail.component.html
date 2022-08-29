@@ -3,6 +3,9 @@
         <crx-header pageTitle="profileDetail.pageTitle"></crx-header>
     </div>
     <div class="body">
+        <button [routerLink]="'/profiles'" mat-raised-button color="primary">
+            {{ 'profileDetail.back' | translate }}
+        </button>
         <mat-card *ngIf="user$ | async as user" class="card">
             <mat-card-title-group>
                 <mat-card-title>{{ 'profileDetail.profileTitle' | translate }}</mat-card-title>

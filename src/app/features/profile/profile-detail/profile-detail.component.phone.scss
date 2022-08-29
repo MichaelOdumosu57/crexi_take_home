@@ -12,5 +12,13 @@
     .detailValue{
       font-size: 3vw;
     }
+    .mat-card-title-group{
+      flex-direction: column;
+      align-items: center;
+    }
+    .circle{
+      width: 35%;
+      height: auto;
+    }
   }
 }

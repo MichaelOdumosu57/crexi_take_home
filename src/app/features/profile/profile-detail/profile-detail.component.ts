@@ -21,17 +21,19 @@ export class ProfileDetailComponent implements OnInit {
   user$: Observable<any>;
   constructor(
     private store: Store<AppState>,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    
   ) { }
 
+ 
   ngOnInit() {
 
-    this.user$ = {
-      "api": this.store.select(getUserProfile),
-      "route": this.store.select(pickUserProfile)
-    }[env.profileDetail.getUserStrategy]
+    this.updateUser$BasedOnGetUserStrategy();
+    this.determineHowToLoadUserProfile();
+  }
 
 
+  determineHowToLoadUserProfile() {
     if (env.profileDetail.getUserStrategy === "api") {
 
       this.store.dispatch(ProfileActions.loadingGetRandomProfile());
@@ -40,11 +42,17 @@ export class ProfileDetailComponent implements OnInit {
       this.route.params
         .pipe(
           tap((result) => {
-            this.store.dispatch(ProfileActions.updateCurrentUserId({ id: result.id }))
+            this.store.dispatch(ProfileActions.updateCurrentUserId({ id: result.id }));
           })
         )
-        .subscribe()
+        .subscribe();
     }
   }
 
+  updateUser$BasedOnGetUserStrategy() {
+    this.user$ = {
+      "api": this.store.select(getUserProfile),
+      "route": this.store.select(pickUserProfile)
+    }[env.profileDetail.getUserStrategy];
+  }
 }

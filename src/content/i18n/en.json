@@ -3,6 +3,7 @@
     "initalLoading":"Loading ..."
   },
   "profileDetail":{
+    "back":"Back To Profiles",
     "pageTitle":"Profile Details",
     "profileTitle":"User Profile",
     "initialLoading":"Retrieving User Information",
