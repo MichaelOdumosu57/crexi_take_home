@@ -12,6 +12,7 @@ export class DevEnv {
     getLocationCoords:(location:string)=>{
 
       let encodedLocation = encodeURIComponent(location)
+      // I know after the assessment I'll change the api key
       return `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedLocation}.json?access_token=pk.eyJ1IjoibWljaGFlbG9kdW1vc3U1NyIsImEiOiJjajB5Nzl6ODMwMmVlMzJwZXVqdmtlbGs1In0.YWZAMCT9m7su01RofBiQmQ`
     }
   }
