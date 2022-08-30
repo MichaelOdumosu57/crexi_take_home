@@ -116,8 +116,36 @@ __src\app\core\layout\page\page.component.ts__
 __src\app\core\layout\page-not-found\page-not-found.component.ts__
 * we should not be interacting with the dom directly according to the docs, but sometimes even through it defeats consistency, you need a break
   * that means I have to hide my background here
+__src\app\core\routing\store\routing.reducers.ts__
+* we should take things a step further and make interfaces,models ,,, to class so we can have default imitalizeiom
+* compare this with profile reducers
+* for routing state its a good reason when the edge case calls for it however I am not incentivzed to use it here, since I managed not to use it in the crafting of the solution I can delete it to save space
+* __src\app\core\screen\screen.constants.ts__
+* I think there is an way to pull variables out of scss into js
+* __src\app\core\utils\utility.service.ts__
+* generateEntityEffect information hiding pricinple dont have to write a huge set of logic for each effect
+* __src\app\core\core.module.ts__
+* started to remove uncessary files
+*__src\app\features\profile\profile-detail\profile-detail.component.ts__
+* we can optimize logic so that getUserProfile is not necesasary
+*__src\app\features\profile\profile-main\profile-main.component.ts__
+* what have html & scss when its not doing anything or keep consistency
+* __src\app\features\profile\services\profile.service.ts__
+* make use of the passport principle data transformation
+* __src\app\features\profile\store\profile.effects.ts__
+* Ideal amnt of arguments is zero however we have a generic fn is it ok in this case
+* is listRandomProfileFail necessary just for the sake of the createEffect calllback
+* __src\app\store\reducers.ts__
+what exactly is happening here
+* __src\app\core\core.module.ts__
+* what the moduleImportGuard there to stop bad developers?
+* __src\custom-theme.scss__
+* how do you gain access to properly leverage the color $crexi-primary,$crexi-accent
+* can we use pallete to replace the website them
 
 ## Overview
+* What should the strategy be on SSP errors, 
+* Heavy use of objects when classes can be used instead
 * Noticed change detection was not used in the app
 * I see the need to use rem
 * I see incosistency in naming convetion
