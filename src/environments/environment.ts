@@ -15,9 +15,7 @@ export class DevEnv {
       return `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedLocation}.json?access_token=pk.eyJ1IjoibWljaGFlbG9kdW1vc3U1NyIsImEiOiJjajB5Nzl6ODMwMmVlMzJwZXVqdmtlbGs1In0.YWZAMCT9m7su01RofBiQmQ`
     }
   }
-  profileDetail={
-    getUserStrategy:"route" // "api" | "route"
-  }
+
   readonly profileList={
     amntOfUsersLimit:10,
     amountOfUsersToList:2,

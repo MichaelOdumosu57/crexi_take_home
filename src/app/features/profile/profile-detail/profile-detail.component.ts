@@ -6,13 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ProfileActions } from '@profile//store';
 import { AppState } from '@store/reducers';
-import { getUserProfile, pickUserProfile } from '@store/selectors';
+import {  pickUserProfile } from '@store/selectors';
+import { UserProfile } from '../interfaces';
 // rxjs
-import { Observable, Subject } from 'rxjs';
-import { tap,takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-// misc
-import { env } from 'src/environments/environment';
 
 @Component({
   selector: 'crx-profile-detail',
@@ -21,52 +19,24 @@ import { env } from 'src/environments/environment';
 })
 export class ProfileDetailComponent implements OnInit {
 
-  user$: Observable<any>;
+  user$: Observable<UserProfile>;
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
     
   ) { }
 
-  ngUnsub= new Subject()
 
   ngOnInit() {
+    this.user$ = this.store.select(pickUserProfile)
+    let userId = this.route.snapshot.params['id']
+    this.store.dispatch(ProfileActions.updateCurrentUserId({ id: +userId - 1 }));    
 
-    this.updateUser$BasedOnGetUserStrategy();
-    this.determineHowToLoadUserProfile();
   }
   
-  updateUser$BasedOnGetUserStrategy() {
-    this.user$ = {
-      "api": this.store.select(getUserProfile),
-      "route": this.store.select(pickUserProfile)
-    }[env.profileDetail.getUserStrategy];
-  }
 
 
-  determineHowToLoadUserProfile() {
-    if (env.profileDetail.getUserStrategy === "api") {
-
-      this.store.dispatch(ProfileActions.loadingGetRandomProfile());
-    }
-    else {
-      this.loadUserProfileViaRoute$().subscribe();
-    }
-  }
 
 
-   loadUserProfileViaRoute$() {
-    return this.route.params
-      .pipe(
-        takeUntil(this.ngUnsub),
-        tap((result) => {
-          this.store.dispatch(ProfileActions.updateCurrentUserId({ id: +result.id - 1 }));
-        })
-      );
-  }
 
-  ngOnDestroy(){
-    this.ngUnsub.next();
-    this.ngUnsub.complete()
-   }
 }

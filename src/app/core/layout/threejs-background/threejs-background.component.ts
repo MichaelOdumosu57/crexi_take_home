@@ -187,7 +187,7 @@ export class ThreejsBackgroundComponent implements OnInit {
         takeUntil(this.ngUnsub),
         filter((evt) => evt instanceof NavigationEnd),
         tap((evt: NavigationEnd) => {
-          console.log(evt)
+          
           removeAll()
           let finalPosition = evt.url.match(/^\/\profiles/) ? env.threeJSBackground.cameraProfilesPosition : env.threeJSBackground.cameraProfilePosition
           new Tween(this.camera.position)

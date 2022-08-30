@@ -7,7 +7,6 @@ const initialState: ProfileState = new ProfileState();
 
 const reducer = createReducer(
   initialState,
-  on(ProfileActions.getRandomProfileSuccess, (state, action) => ({ ...state, currentUser: action.result })),
   on(ProfileActions.listRandomProfileSuccess, (state, action) => 
   ({ ...state, users: [...state.users,...action.result] })
   ),

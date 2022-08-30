@@ -113,6 +113,7 @@ jhua no tests, notice the effects observables are not generic
 getting single profile page is broken 
 repo3 uses material table
 chisto8989 something crashed but made use of router actions
+fernvilla route.snapshot.params['id']
 
 
 
@@ -138,6 +139,7 @@ __src\app\core\routing\store\routing.reducers.ts__
 * started to remove uncessary files
 *__src\app\features\profile\profile-detail\profile-detail.component.ts__
 * we can optimize logic so that getUserProfile is not necesasary
+
 *__src\app\features\profile\profile-main\profile-main.component.ts__
 * what have html & scss when its not doing anything or keep consistency
 * __src\app\features\profile\services\profile.service.ts__
