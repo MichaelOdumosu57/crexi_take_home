@@ -19,12 +19,15 @@ Only members of the project can read the README.md from the ignore folder
 # Aspects
 
 ## Challenges
-* Getting the global to offset to the right on the profile detail pae
+* Getting the global to offset to the right on the profile detail pane
+* getting the point of the users location to face the camera
+* Implementing server side pagination
 
 
 ## Enjoyed
 * learning about host-context as a neat logic for managing overlayLoading and seeing how the crexi team managed overlayLoading
 * how they setup there scss library and theme I am going to take with me throughout my career
+* Looking at other submissions and making optimizations
 
 ## Leadership
 
@@ -88,13 +91,11 @@ calculate pos on sphere based on latlon
 # Stack 
 
 ## Frontend
-* Angular v13.1.6
+* Angular v14.2.0
 ### Structure
 
 
 ## Backend
-* python v3.10.6
-* flask v 2.2.4
 * mapbox v5
 
 ### Structure
@@ -102,12 +103,9 @@ calculate pos on sphere based on latlon
 
 
 ## Testing
-* Docker, (tes in docker containers from linux VM) v20.10.7
 
 ### E2E
-* rspec    v3.10.0
-* capybara v3.35.3
-* puffing billy v2.4.1
+
 
 #### Structure
 
