@@ -196,7 +196,7 @@ export class ThreejsBackgroundComponent implements OnInit {
               1200
             )
             .onComplete(()=>{
-              if(!evt.url.match(/^\/\profiles/)){
+              if(evt.url.match(/^\/\profile\/?(?!s)/)){
                 this.initShowCoordsOfCurrentUsersLocationOnPlanet()
               }
             })
