@@ -15,7 +15,7 @@
     "moduleResolution": "node",
     "newLine": "lf",
     "noImplicitAny": true,
-    // "noUnusedLocals": true,
+    "noUnusedLocals": true,
     "outDir": "./dist",
     "paths": {
         "@auth/*": ["src/app/core/auth/*"],

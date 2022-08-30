@@ -1,6 +1,5 @@
 // angular
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 // ngrx
 import { Store } from '@ngrx/store';
@@ -23,7 +22,6 @@ export class SnackBarContentComponent  {
   }
   constructor(
     private store:Store<LayoutState>,
-    private router:Router
   ) { }
 
 

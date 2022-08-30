@@ -1,6 +1,6 @@
 // angular
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 // rxjs
 import {tap,takeUntil} from 'rxjs/operators'
@@ -11,6 +11,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@store/reducers';
 import { ProfileActions } from '../store';
 import { listUserProfiles } from '../store/profile.selectors';
+
+// misc
 import { env } from 'src/environments/environment';
 
 
@@ -65,7 +67,7 @@ export class ProfileMainComponent implements OnInit {
         takeUntil(this.ngUnsub),
         tap(() => {
           let xPixelsFromTheBottom = this.determineXPixelsFromBottom();
-          if(xPixelsFromTheBottom < env.profileList.amntOfPixelsFromBottomBeforeRetrievingData && this.router.url === "/profiles"){
+          if(xPixelsFromTheBottom < env.profileList.amntOfPixelsFromBottomBeforeRetrievingData && this.router.url === env.nav.profilesPage){
             
             this.store.dispatch(ProfileActions.loadingListRandomProfile());
           }

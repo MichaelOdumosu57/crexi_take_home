@@ -1,5 +1,5 @@
 // angular
-import { Component, HostBinding, HostListener, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 // ngrx
 import { Store } from '@ngrx/store';
@@ -7,14 +7,13 @@ import { LayoutState } from '../interfaces';
 import { LayoutSelectors } from '../store';
 
 // rxjs
-import { tap,takeUntil, map,delay} from 'rxjs/operators'
+import { tap, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 // material
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SnackBarContentComponent } from '../snack-bar-content/snack-bar-content.component';
 
-// i18n
 
 
 @Component({

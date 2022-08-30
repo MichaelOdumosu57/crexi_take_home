@@ -50,17 +50,20 @@ export class ProfileDetailComponent implements OnInit {
       this.store.dispatch(ProfileActions.loadingGetRandomProfile());
     }
     else {
-      this.route.params
-        .pipe(
-          takeUntil(this.ngUnsub),
-          tap((result) => {
-            this.store.dispatch(ProfileActions.updateCurrentUserId({ id: +result.id-1 }));
-          })
-        )
-        .subscribe();
+      this.loadUserProfileViaRoute$().subscribe();
     }
   }
 
+
+   loadUserProfileViaRoute$() {
+    return this.route.params
+      .pipe(
+        takeUntil(this.ngUnsub),
+        tap((result) => {
+          this.store.dispatch(ProfileActions.updateCurrentUserId({ id: +result.id - 1 }));
+        })
+      );
+  }
 
   ngOnDestroy(){
     this.ngUnsub.next();

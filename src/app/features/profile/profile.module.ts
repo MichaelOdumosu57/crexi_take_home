@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 
-// misc
+// miss
 import { LayoutModule } from '@core/layout/layout.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 

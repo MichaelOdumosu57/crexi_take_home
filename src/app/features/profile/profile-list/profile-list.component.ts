@@ -1,17 +1,13 @@
 // angular
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 // rxjs
-import { fromEvent, merge, Observable, Subject, Subscription } from 'rxjs';
-import { tap, takeUntil } from 'rxjs/operators';
-
+import { Observable } from 'rxjs';
 
 // store
 import { Store } from '@ngrx/store';
 import { ProfileState, UserProfile } from '../interfaces';
 import { listUserProfiles } from '../store/profile.selectors';
-import { ProfileActions } from '../store';
 
 @Component({
   selector: 'app-profile-list',

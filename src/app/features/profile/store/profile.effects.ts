@@ -1,9 +1,11 @@
+// angular
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
+
+// ngrx store
 import { ProfileActions } from "./index";
 import { ProfileService } from "../services/profile.service";
-import { catchError, concatMap, map } from "rxjs/operators";
-import { of } from "rxjs";
+
+// misc
 import { UtilService } from "@core/utils/utility.service";
 
 @Injectable()

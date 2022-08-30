@@ -1,25 +1,36 @@
 // angular
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 // misc
 import { UtilService } from '@core/utils/utility.service';
 import { env } from 'src/environments/environment';
 // rxjs
-import { fromEvent, of, Subject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { tap, takeUntil, filter,pluck, exhaustMap } from 'rxjs/operators';
 
 // three.js
 import { removeAll, Tween, update } from 'content/scripts/tween.js/tween';
-import { MathUtils, Scene, Color, AmbientLight, DirectionalLight, BoxGeometry, Mesh, MeshLambertMaterial, WebGLRenderer, TextureLoader, SphereGeometry, MeshStandardMaterial, PerspectiveCamera, Vector3, MeshBasicMaterial, Euler } from 'three';
-import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera';
+import {
+  Scene,
+  AmbientLight,
+  DirectionalLight,
+  Mesh,
+  MeshLambertMaterial,
+  WebGLRenderer,
+  TextureLoader,
+  SphereGeometry,
+  PerspectiveCamera,
+  Vector3,
+} from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 // store
 import {  ProfileSelectors } from '@features/profile/store';
 import { Store } from '@ngrx/store';
 import { ProfileState, UserProfile } from '@interfaces';
-import { HttpClient } from '@angular/common/http';
 
 
 
@@ -53,7 +64,7 @@ export class ThreejsBackgroundComponent implements OnInit {
     
     sub =this.currentUser$
     .pipe(
-      filter((user:UserProfile)=> user instanceof UserProfile),
+      filter((user)=> user instanceof UserProfile),
       takeUntil(this.ngUnsub),
       exhaustMap((user)=>{
         let endpoint = env.endpoints.getLocationCoords(user.city)
@@ -193,7 +204,7 @@ export class ThreejsBackgroundComponent implements OnInit {
 
 
         })
-      )
+      );
 
   }
 

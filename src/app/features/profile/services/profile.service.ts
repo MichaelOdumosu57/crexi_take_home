@@ -1,9 +1,17 @@
+// angular
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+
+// profile
 import { GetUserAPISuccessModel, UserProfile } from "@interfaces";
-import { forkJoin, of } from "rxjs";
-import { map, pluck, tap, delay, timeout } from "rxjs/operators";
+
+// rxjs
+import { of } from "rxjs";
+import { map, tap } from "rxjs/operators";
+
+// misc
 import { env } from "src/environments/environment";
+
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {

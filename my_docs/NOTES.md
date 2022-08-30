@@ -142,6 +142,8 @@ what exactly is happening here
 * __src\custom-theme.scss__
 * how do you gain access to properly leverage the color $crexi-primary,$crexi-accent
 * can we use pallete to replace the website them
+* __projects\profile-detail-card\src\lib\profile-detail-card.scss__
+* libs should not depend on utils but for the sake of time its ok
 
 ## Overview
 * What should the strategy be on SSP errors, 

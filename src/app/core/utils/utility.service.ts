@@ -48,6 +48,7 @@ export class UtilService{
               catchError((error) => {
                 this.store.dispatch(LayoutActions.showSnackBar({text:failText}))
                 return of(failAction({error}))
+                
               } ),
               finalize(()=>{
                 this.store.dispatch(LayoutActions.hideOverlayLoading())
