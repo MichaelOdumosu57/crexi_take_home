@@ -178,11 +178,11 @@ what exactly is happening here
 ## Talking points
 * Angular library profile-detail-card
 * Scss
-* Three.js import
   * Could have leveraged ngrx to not make another api call if lat lng is in the store
 * infomration hiding in service
 * SSP logic
 * Upgrade to Angular 14
+* Organize module imports
 
 
 # TODO
