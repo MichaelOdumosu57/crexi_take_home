@@ -180,7 +180,7 @@ what exactly is happening here
   * Could have leveraged ngrx to not make another api call if lat lng is in the store
 * infomration hiding in service
 * SSP logic
-
+* Upgrade to Angular 14
 
 
 # TODO
