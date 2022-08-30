@@ -107,7 +107,17 @@
 * three-background-js is on app.module.ts which may not be good if these routes were lazy loaded 
 * in app-logo there this itemscope what is that all about
 
+## Looking at other submissions
+repo1 missing loading management, server-side pagination
+jhua no tests, notice the effects observables are not generic
+getting single profile page is broken 
+repo3 uses material table
+chisto8989 something crashed but made use of router actions
+
+
+
 ##  Findings
+
 __src\app\core\layout\app-logo\app-logo.component.ts__
 * ngrx wants to get rid of as plenty of logic as possible, everything in the lifecycle hook needs not to be there
 __src\app\core\layout\page\page.component.ts__
@@ -146,6 +156,8 @@ what exactly is happening here
 * libs should not depend on utils but for the sake of time its ok
 
 ## Overview
+* Chris Engene rodriguez uses table as well
+* Every component that is a page should be its own module
 * What should the strategy be on SSP errors, 
 * Heavy use of objects when classes can be used instead
 * Noticed change detection was not used in the app
@@ -161,6 +173,13 @@ what exactly is happening here
   * place id="root" in index html, critical so you can easily use your media query scss to overide things. we would make it global for large projects but phone is sufficient and desired if you can  have a website look good on the mobile view
 
 
+## Talking points
+* Angular library profile-detail-card
+* Scss
+* Three.js import
+  * Could have leveraged ngrx to not make another api call if lat lng is in the store
+* infomration hiding in service
+* SSP logic
 
 
 
