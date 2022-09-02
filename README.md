@@ -1,24 +1,153 @@
-# AngularTask
-
-One of the goals of this task is to measure your understanding of ngrx and the redux pattern.
-Use ngrx and create or modify appropriate actions, effects, reducers, and selectors.
-
-You should [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the project, and [create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) once you are finished.
-
-1. The user profile page is currently loaded with dummy data. Use the public API at [Random User Generator](https://randomuser.me/) ([Docs](https://randomuser.me/documentation)) to pull in a random user and populate the profile page. You should get the relevant data from the API to fill a `ProfileStore`.
-
-2. Create a new page, a profile list. Pull in 10 random profiles to populate this list, storing them in the state, and make each profile list item clickable, sending the user to a user details page with that user data. The user profile page route should be adjusted to take an optional id param, which if missing will show a random user (step 1)
-
-The UI is up to you, although it is recommended to use [Angular Material](https://material.angular.io/components/categories) components.
-
-# Project details
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+[![CircleCI](https://circleci.com/gh/WindMillCode/WindMillCodeSite.svg?style=svg)](<LINK>)
 
 
+# Summary
 
-## Available routes:
-home page (default route: `/`)
-user profile page (route: `/profile`)
+## Projects
+
+## TODO
+* must have mapbox API service on the backend
+
+## General Description
+
+## Features include 
+Only members of the project can read the README.md from the ignore folder
+
+## Issues
+* Figure out why on zoom in does waterpipe.js not resize the canvas properly the view should be true to the screen
+
+# Aspects
+
+## Challenges
+* Getting the global to offset to the right on the profile detail pane
+* getting the point of the users location to face the camera
+* Implementing server side pagination
+
+
+## Enjoyed
+* learning about host-context as a neat logic for managing overlayLoading and seeing how the crexi team managed overlayLoading
+* how they setup there scss library and theme I am going to take with me throughout my career
+* Looking at other submissions and making optimizations
+
+## Leadership
+
+## Done Different
+* made product-detail-card lib from the beginning 
+
+
+
+
+# Resources
+* [Rotate to loaction on planet three js](https://www.youtube.com/watch?v=2pUzJOfekVE)
+* [Encode URI Component](https://stackoverflow.com/a/332888)
+* [Geocoding, retreiving lat,lng based on address](https://developers.google.com/maps/documentation/geocoding/requests-geocoding)
+* [SCSS Color Functions](https://www.w3schools.com/sass/sass_functions_color.php)
+* [Host Context](https://blog.angular-university.io/angular-host-context/)
+* [How to get the current route angular](https://www.tektutorialshub.com/angular/how-to-get-the-current-route-or-url-in-angular/)
+* [Random User API](https://randomuser.me/documentation#howto)
+* [How to set value in template-driven forms in Angular](https://www.tektutorialshub.com/angular/how-to-set-value-in-template-driven-forms-in-angular/)
+
+
+## Material
+* [Mat Select](https://material.angular.io/components/select/examples)
+* [Mat Button](https://material.angular.io/components/button/api)
+* [Mat Icon](https://www.developer.com/languages/javascript/using-material-font-icons-in-your-angular-11-projects/)
+* [Mat Snackbar](https://material.angular.io/components/snack-bar)
+* [Mat Progres Spinner](https://material.angular.io/components/progress-spinner/overview)
+  * https://stackblitz.com/edit/angular-ezgdww?file=src%2Fapp%2Fapp.module.ts,src%2Fapp%2Fprogress-spinner-overview-example.ts,src%2Fmaterial.module.ts
+
+
+## Snippets
+* general snippets found in planning in the trello workspace
+calculate pos on sphere based on latlon
+  * make sure the sphere is not rotated
+```js
+  calcPosFromLatLonRad(lat:number,lon:number,rad:number){
+    var phi= (90-lat)*(Math.PI/180)
+    var theta= (lon+180)*(Math.PI/180);
+
+    let x = -(Math.sin(phi)*Math.cos(theta)) * rad;
+    let y = (Math.cos(phi)) * rad;
+    let z = (Math.sin(phi)*Math.sin(theta)) * rad
+    return {x,y,z}
+  }
+```
+
+## Docs
+
+## Media 
+<!-- bunch of links -->
+
+
+# Metrics
+
+## Users
+
+## Netowrk
+
+## Storage
+
+
+# Stack 
+
+## Frontend
+* Angular v14.2.0
+### Structure
+
+
+## Backend
+* mapbox v5
+
+### Structure
+
+
+
+## Testing
+
+### E2E
+
+
+#### Structure
+
+
+## Hosting
+* Codesandbox- Frontend Hosting
+https://codesandbox.io/p/github/MichaelOdumosu57/crexi_take_home/csb-r76j1j/draft/sparkling-night?file=%2FREADME.md
+
+
+* Heroku - backend hosting
+
+### CMS
+* Comsicjs - text-based
+* Cloudinary - media-based
+
+
+
+### Logging
+
+## DevOps
+
+### CI/CD/CM
+* CircleCi
+
+### Version Control
+* Github
+
+## Communication
+Facebook 
+Slack
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
