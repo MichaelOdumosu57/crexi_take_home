@@ -10,7 +10,7 @@ import { of } from "rxjs";
 import { map, tap } from "rxjs/operators";
 
 // misc
-import { env } from "src/environments/environment";
+import { env } from "src/environments/environment.dev";
 
 
 @Injectable({ providedIn: 'root' })
@@ -37,7 +37,7 @@ export class ProfileService {
     if(this.listUsersCounter === env.profileList.amntOfUsersLimit){
       return of([])
     }
-    
+
     return this.http.get(
       env.endpoints.listRandomUsers+env.profileList.amountOfUsersToList
     )
@@ -54,7 +54,7 @@ export class ProfileService {
 let getUserSuccess = (apiData: GetUserAPISuccessModel) => {
 
   let [randomUser] = apiData.results
-  
+
   let uiData = new UserProfile({
     cellNumber: randomUser.cell,
     city: randomUser.location.city,

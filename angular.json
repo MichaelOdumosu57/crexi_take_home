@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            
+
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -44,10 +44,9 @@
             "namedChunks": true
           },
           "configurations": {
-            "production": {
+            "github": {
               "outputPath": "docs",
               "baseHref": "/crexi_take_home/",
-              "deployUrl":"/crexi_take_home/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -74,6 +73,7 @@
                 }
               ]
             }
+
           },
           "defaultConfiguration": ""
         },

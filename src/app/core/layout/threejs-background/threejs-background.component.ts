@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 
 // misc
 import { UtilService } from '@core/utils/utility.service';
-import { env } from 'src/environments/environment';
+import { env } from 'src/environments/environment.dev';
 // rxjs
 import { Subject, Subscription } from 'rxjs';
 import { tap, takeUntil, filter,pluck, exhaustMap } from 'rxjs/operators';
@@ -61,16 +61,16 @@ export class ThreejsBackgroundComponent implements OnInit {
 
   initShowCoordsOfCurrentUsersLocationOnPlanet(){
     let sub:Subscription
-    
+
     sub =this.currentUser$
     .pipe(
       filter((user)=> user instanceof UserProfile),
       takeUntil(this.ngUnsub),
       exhaustMap((user)=>{
         let endpoint = env.endpoints.getLocationCoords(user.city)
-        
+
         return this.adjustCameraToLookAtLocation(endpoint,sub)
-        
+
       })
     )
     .subscribe()
@@ -96,13 +96,13 @@ export class ThreejsBackgroundComponent implements OnInit {
 
         let [lng,lat]= result
         let {x,y,z} = this.calcPosFromLatLonRad(lat,lng)
-        var camDistance = this.camera.position.length();   
+        var camDistance = this.camera.position.length();
 
-        
+
         let vector = new Vector3(x,y,z)
         .normalize()
         .multiplyScalar(camDistance)
-        
+
         this.camera.position.copy(vector)
         this.planetEarth.rotation.set(0,0,0)
         sub?.unsubscribe()
@@ -156,7 +156,7 @@ export class ThreejsBackgroundComponent implements OnInit {
         let material = new MeshLambertMaterial({ map: result });
         this.planetEarth = new Mesh(geometry, material);
 
-        
+
         this.scene.add(this.planetEarth);
       }, () => { }, console.log
     );
@@ -187,7 +187,7 @@ export class ThreejsBackgroundComponent implements OnInit {
         takeUntil(this.ngUnsub),
         filter((evt) => evt instanceof NavigationEnd),
         tap((evt: NavigationEnd) => {
-          
+
           removeAll()
           let finalPosition = evt.url.match(/^\/\profiles/) ? env.threeJSBackground.cameraProfilesPosition : env.threeJSBackground.cameraProfilePosition
           new Tween(this.camera.position)
@@ -224,7 +224,7 @@ export class ThreejsBackgroundComponent implements OnInit {
 
     requestAnimationFrame(this.animate);
     this.setCanvasDimsBasedOnDisplayElement()
-    
+
     this.controls.update()
     update()
 
@@ -235,9 +235,9 @@ export class ThreejsBackgroundComponent implements OnInit {
 
     this.renderer.render(this.scene, this.camera);
   }
-  
+
   ngOnDestroy(){
-    
+
     this.ngUnsub.next();
     this.ngUnsub.complete()
   }

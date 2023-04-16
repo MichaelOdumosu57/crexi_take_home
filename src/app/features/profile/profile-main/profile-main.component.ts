@@ -13,7 +13,7 @@ import { ProfileActions } from '../store';
 import { listUserProfiles } from '../store/profile.selectors';
 
 // misc
-import { env } from 'src/environments/environment';
+import { env } from 'src/environments/environment.dev';
 
 
 
@@ -24,7 +24,7 @@ import { env } from 'src/environments/environment';
 })
 export class ProfileMainComponent implements OnInit {
 
-  
+
   users$ = this.store.select(listUserProfiles);
   ngUnsub = new Subject<void>()
 
@@ -42,7 +42,7 @@ export class ProfileMainComponent implements OnInit {
     .pipe(
       takeUntil(this.ngUnsub),
       tap((result)=>{
-        
+
         if(result.length ===0){
           this.store.dispatch(ProfileActions.loadingListRandomProfile());
         }
@@ -54,7 +54,7 @@ export class ProfileMainComponent implements OnInit {
         }
       })
     )
-  
+
   }
 
   initLoadOnScrollBottomSub:Subscription
@@ -68,7 +68,7 @@ export class ProfileMainComponent implements OnInit {
         tap(() => {
           let xPixelsFromTheBottom = this.determineXPixelsFromBottom();
           if(xPixelsFromTheBottom < env.profileList.amntOfPixelsFromBottomBeforeRetrievingData && this.router.url === env.nav.profilesPage){
-            
+
             this.store.dispatch(ProfileActions.loadingListRandomProfile());
           }
         })

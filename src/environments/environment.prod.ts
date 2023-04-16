@@ -1,4 +1,4 @@
-import { DevEnv as DevEnv } from "./environment";
+import { DevEnv as DevEnv } from "./environment.dev";
 
 
 class ProdEnv extends DevEnv{
